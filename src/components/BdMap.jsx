@@ -164,9 +164,13 @@ export default class SimpleExample extends Component {
               width: "100px",
             }}
             variant="danger"
-          >
-            <span className="sr-only">Loading...</span>
-          </Spinner>
+          ></Spinner>
+          <span className="sr-only">Loading...</span>
+          <p align="center" style={{ transform: "translateX( -25%)",  }}>
+            Please wait while map loads
+            <br />
+            Thank You
+          </p>
         </div>
       );
   }

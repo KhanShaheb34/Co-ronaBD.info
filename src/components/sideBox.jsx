@@ -15,6 +15,7 @@ export default class SideBox extends Component {
         data: data,
         loaded: true,
       });
+      console.log(data);
     });
   }
 
@@ -22,20 +23,101 @@ export default class SideBox extends Component {
     if (this.state.loaded)
       return (
         <div>
-          <h3 align="center">District Wise Data</h3>
+          <h3 align="center" className="mb-4">
+            nCov-19
+            <br />
+            Interactive Dashboard
+          </h3>
+
+          <Table striped bordered hover size="sm" className="mb-4">
+            <tbody align="center">
+              <tr>
+                <th colSpan={2} align="center">
+                  Positive Cases
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <h5 className="m-1">
+                    {this.state.data.test_positive_24_hour}
+                  </h5>
+                  <small style={{ color: "grey" }}>In 24 Hours</small>
+                </td>
+                <td>
+                  <h5 className="m-1">{this.state.data.test_positive_total}</h5>
+                  <small style={{ color: "grey" }}>Till Now</small>
+                </td>
+              </tr>
+              <tr>
+                <th colSpan={2} align="center">
+                  Recovered
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <h5 className="m-1">{this.state.data.recovered_24_hour}</h5>
+                  <small style={{ color: "grey" }}>In 24 Hours</small>
+                </td>
+                <td>
+                  <h5 className="m-1">{this.state.data.recovered_total}</h5>
+                  <small style={{ color: "grey" }}>Till Now</small>
+                </td>
+              </tr>
+              <tr>
+                <th colSpan={2} align="center">
+                  Death
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <h5 className="m-1">{this.state.data.death_24_hour}</h5>
+                  <small style={{ color: "grey" }}>In 24 Hours</small>
+                </td>
+                <td>
+                  <h5 className="m-1">{this.state.data.death_total}</h5>
+                  <small style={{ color: "grey" }}>Till Now</small>
+                </td>
+              </tr>
+              <tr>
+                <th colSpan={2} align="center">
+                  Test Conducted
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <h5 className="m-1">
+                    {this.state.data.test_conducted_24_hour}
+                  </h5>
+                  <small style={{ color: "grey" }}>In 24 Hours</small>
+                </td>
+                <td>
+                  <h5 className="m-1">
+                    {this.state.data.test_conducted_total}
+                  </h5>
+                  <small style={{ color: "grey" }}>Till Now</small>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+
           <Table striped bordered hover>
             <thead>
+              <tr align="center">
+                <th colSpan={2}>District Wise Data</th>
+              </tr>
               <tr>
                 <th>District</th>
                 <th>Count</th>
               </tr>
             </thead>
-            {this.state.data.districts.map((dist) => (
-              <tbody>
-                <td>{dist.name}</td>
-                <td>{dist.count}</td>
-              </tbody>
-            ))}
+            <tbody>
+              {this.state.data.districts.map((dist) => (
+                <tr>
+                  <td>{dist.name}</td>
+                  <td>{dist.count}</td>
+                </tr>
+              ))}
+            </tbody>
           </Table>
         </div>
       );
