@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import { Map, GeoJSON } from "react-leaflet";
 import AllData from "../CollectData/data";
+import { Map, GeoJSON } from "react-leaflet";
+import { Spinner, Modal, Button } from "react-bootstrap";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import "leaflet/dist/leaflet.css";
 
@@ -10,15 +13,19 @@ export default class SimpleExample extends Component {
     this.state = {
       lat: 23.685,
       lng: 90.3563,
-      zoom: 7,
+      zoom: 6.5,
       map: null,
       loaded: false,
       data: null,
       max: -1,
       min: 9999999999,
+      selctedName: "",
+      selectedCount: "",
+      modalShow: false,
     };
     this.style = this.style.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
+    this.setModalShowFalse = this.setModalShowFalse.bind(this);
   }
 
   componentDidMount() {
@@ -56,7 +63,6 @@ export default class SimpleExample extends Component {
     const found = this.state.data.districts.find((district) => {
       return district.name.toLowerCase() === name.toLowerCase();
     });
-    // const count = found.count;
     if (!found) return 0;
     return found.count;
   }
@@ -85,38 +91,83 @@ export default class SimpleExample extends Component {
     };
   }
 
+  setModalShowFalse() {
+    this.setState({ ...this.state, modalShow: false });
+  }
+
   handleMapClick(feature) {
     const name = feature.layer.feature.properties.NAME_2;
     const count = this.getCount(name);
+    this.setState({
+      ...this.state,
+      selectedName: name,
+      selectedCount: count,
+      modalShow: true,
+    });
+    this.setState({
+      ...this.state,
+      modalShow: true,
+    });
     console.log({ name, count });
   }
 
-  map() {
-    const position = [this.state.lat, this.state.lng];
-    return (
-      <Map
-        style={{ width: "100vw", height: "100vh", backgroundColor: "#ecf0f1" }}
-        center={position}
-        zoom={this.state.zoom}
-      >
-        {/* <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        /> */}
-        <GeoJSON
-          data={this.state.map}
-          style={this.style}
-          onClick={this.handleMapClick}
-        ></GeoJSON>
-      </Map>
-    );
-  }
-
-  loading() {
-    return <h1>Loading...</h1>;
-  }
-
   render() {
-    return this.state.loaded ? this.map() : this.loading;
+    const position = [this.state.lat, this.state.lng];
+    if (this.state.loaded)
+      return (
+        <React.Fragment>
+          <Map
+            style={{
+              width: "100%",
+              height: "100%",
+              backgroundColor: "#ecf0f1",
+            }}
+            center={position}
+            zoom={this.state.zoom}
+          >
+            <GeoJSON
+              data={this.state.map}
+              style={this.style}
+              onClick={this.handleMapClick}
+            ></GeoJSON>
+          </Map>
+          <Modal
+            show={this.state.modalShow}
+            size="sm"
+            aria-labelledby="data-modal"
+            onHide={this.setModalShowFalse}
+            centered
+          >
+            <Modal.Body style={{ textAlign: "center" }}>
+              <h5>Total Positive in {this.state.selectedName}</h5>
+              <h4>{this.state.selectedCount}</h4>
+              <Button onClick={this.setModalShowFalse}>Close</Button>
+            </Modal.Body>
+          </Modal>
+        </React.Fragment>
+      );
+    else
+      return (
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <Spinner
+            animation="border"
+            role="status"
+            style={{
+              height: "100px",
+              width: "100px",
+            }}
+            variant="danger"
+          >
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        </div>
+      );
   }
 }

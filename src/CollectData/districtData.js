@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const url = "https://corona-bd.herokuapp.com/district";
+const url =
+  "https://cors-anywhere.herokuapp.com/https://corona-bd.herokuapp.com/district";
 
 export default async () => {
   let res = await axios.get(url);
