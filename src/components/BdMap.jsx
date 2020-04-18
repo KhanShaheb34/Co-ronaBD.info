@@ -29,7 +29,7 @@ export default class SimpleExample extends Component {
   }
 
   componentDidMount() {
-    fetch("/bd.geojson")
+    fetch("/bd.json")
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -166,7 +166,11 @@ export default class SimpleExample extends Component {
             variant="danger"
           ></Spinner>
           <span className="sr-only">Loading...</span>
-          <p align="center" style={{ transform: "translateX( -25%)",  }}>
+          <p
+            align="center"
+            style={{ transform: "translateX( -25%)", color: "grey" }}
+            className="mt-4"
+          >
             Please wait while map loads
             <br />
             Thank You

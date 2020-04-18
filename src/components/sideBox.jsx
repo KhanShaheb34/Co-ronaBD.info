@@ -29,7 +29,7 @@ export default class SideBox extends Component {
             Interactive Dashboard
           </h3>
 
-          <Table striped bordered hover size="sm" className="mb-4">
+          <Table striped bordered hover size="sm" className="mb-0">
             <tbody align="center">
               <tr>
                 <th colSpan={2} align="center">
@@ -99,9 +99,13 @@ export default class SideBox extends Component {
               </tr>
             </tbody>
           </Table>
+          <small className="mb-4" style={{ color: "grey" }}>
+            * Updated On:{" "}
+            {new Date(this.state.data.lastUpdateTime).toLocaleString()}
+          </small>
 
-          <Table striped bordered hover>
-            <thead>
+          <Table striped bordered hover className="mt-4">
+            <tbody>
               <tr align="center">
                 <th colSpan={2}>District Wise Data</th>
               </tr>
@@ -109,8 +113,6 @@ export default class SideBox extends Component {
                 <th>District</th>
                 <th>Count</th>
               </tr>
-            </thead>
-            <tbody>
               {this.state.data.districts.map((dist) => (
                 <tr>
                   <td>{dist.name}</td>
@@ -119,6 +121,12 @@ export default class SideBox extends Component {
               ))}
             </tbody>
           </Table>
+          <small className="mb-4" style={{ color: "grey" }}>
+            * Updated On:{" "}
+            {new Date(
+              this.state.data.district_data_updated_on
+            ).toLocaleString()}
+          </small>
         </div>
       );
     else
