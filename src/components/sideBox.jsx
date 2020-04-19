@@ -42,15 +42,6 @@ export default class SideBox extends Component {
             </div>
             <div className="m-1 d-inline-block">
               <GitHubButton
-                href="https://github.com/KhanShaheb34/nCov19-InteractiveDashboard-BD/issues"
-                data-icon="octicon-issue-opened"
-                aria-label="Issue KhanShaheb34/nCov19-InteractiveDashboard-BD on GitHub"
-              >
-                Issue
-              </GitHubButton>
-            </div>
-            <div className="m-1 d-inline-block">
-              <GitHubButton
                 href="https://github.com/KhanShaheb34"
                 data-size="small"
                 aria-label="Follow @KhanShaheb34 on GitHub"
