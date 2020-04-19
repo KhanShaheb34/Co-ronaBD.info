@@ -18,8 +18,11 @@ A interactive dashboard with Bangladesh map showing the number of positive cases
 ## Screenshots
 
 - Desktop
+
    ![PC Screenshot](/images/sspc.png)
+   
 - Mobile
+
    ![Mobile Screenshot](/images/ssmb.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
