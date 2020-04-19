@@ -40,7 +40,7 @@ export default async () => {
   ].name = "Habiganj";
   res.data.data[
     res.data.data.findIndex((dist) => dist.name === "Moulovi Bazar")
-  ].name = "Maulvibazar";
+  ].name = "Moulvibazar";
 
   return res.data;
 };
