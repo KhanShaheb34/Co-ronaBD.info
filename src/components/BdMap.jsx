@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AllData from "../CollectData/data";
 import { Map, GeoJSON } from "react-leaflet";
 import { Spinner, Modal, Button } from "react-bootstrap";
+import MouseTooltip from "react-sticky-mouse-tooltip";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "leaflet/dist/leaflet.css";
@@ -21,10 +22,14 @@ export default class SimpleExample extends Component {
       selctedName: "",
       selectedCount: "",
       modalShow: false,
+      tooltipShow: false,
+      tooltipName: "",
     };
     this.style = this.style.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
     this.setModalShowFalse = this.setModalShowFalse.bind(this);
+    this.handleMapMouseOut = this.handleMapMouseOut.bind(this);
+    this.handleMapMouseOver = this.handleMapMouseOver.bind(this);
   }
 
   componentDidMount() {
@@ -109,6 +114,16 @@ export default class SimpleExample extends Component {
     });
   }
 
+  handleMapMouseOver(feature) {
+    this.setState({
+      tooltipShow: true,
+      tooltipName: feature.layer.feature.properties.NAME_2,
+    });
+  }
+  handleMapMouseOut(feature) {
+    this.setState({ tooltipShow: false, tooltipName: "" });
+  }
+
   render() {
     const position = [this.state.lat, this.state.lng];
     if (this.state.loaded)
@@ -127,6 +142,8 @@ export default class SimpleExample extends Component {
               data={this.state.map}
               style={this.style}
               onClick={this.handleMapClick}
+              onMouseOver={this.handleMapMouseOver}
+              onMouseOut={this.handleMapMouseOut}
             ></GeoJSON>
           </Map>
           <Modal
@@ -137,11 +154,26 @@ export default class SimpleExample extends Component {
             centered
           >
             <Modal.Body style={{ textAlign: "center" }}>
-              <h5>Total Positive in {this.state.selectedName}</h5>
+              <h5>Positive Cases in {this.state.selectedName}</h5>
               <h4>{this.state.selectedCount}</h4>
-              <Button onClick={this.setModalShowFalse}>Close</Button>
+              <Button size="sm" onClick={this.setModalShowFalse}>
+                Close
+              </Button>
             </Modal.Body>
           </Modal>
+          <MouseTooltip
+            visible={this.state.tooltipShow}
+            offsetY={20}
+            className="rounded px-1"
+            style={{
+              opacity: 1,
+              backgroundColor: "#000",
+              color: "#fff",
+              zIndex: 1000,
+            }}
+          >
+            <span>{this.state.tooltipName}</span>
+          </MouseTooltip>
         </React.Fragment>
       );
     else
@@ -166,7 +198,10 @@ export default class SimpleExample extends Component {
           <span className="sr-only">Loading...</span>
           <p
             align="center"
-            style={{ transform: "translateX(-25%)", color: "grey" }}
+            style={{
+              transform: "translateX(-25%)",
+              color: "grey",
+            }}
             className="mt-4"
           >
             Please wait while map loads

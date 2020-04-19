@@ -133,10 +133,10 @@ export default class SideBox extends Component {
               </tr>
               <tr>
                 <th>District</th>
-                <th>Count</th>
+                <th>Positive</th>
               </tr>
               {this.state.data.districts.map((dist) => (
-                <tr>
+                <tr key={dist.name}>
                   <td>{dist.name}</td>
                   <td>{dist.count}</td>
                 </tr>
