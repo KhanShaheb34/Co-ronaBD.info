@@ -18,6 +18,7 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.1",
+    "react-github-btn": "^1.1.1",
     "react-leaflet": "^2.6.3",
     "react-scripts": "3.4.1",
     "react-simple-maps": "^2.0.0"

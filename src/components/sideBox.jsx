@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AllData from "../CollectData/data";
 import { Spinner, Table } from "react-bootstrap";
+import GitHubButton from "react-github-btn";
 
 export default class SideBox extends Component {
   state = {
@@ -15,7 +16,6 @@ export default class SideBox extends Component {
         data: data,
         loaded: true,
       });
-      console.log(data);
     });
   }
 
@@ -23,11 +23,42 @@ export default class SideBox extends Component {
     if (this.state.loaded)
       return (
         <div>
-          <h3 align="center" className="mb-4">
+          <h3 align="center" className="mb-2">
             nCov-19
             <br />
-            Interactive Dashboard
+            Interactive Dashboard for Bangladesh
           </h3>
+
+          <div className="info mb-2" align="center">
+            <div className="m-1 d-inline-block">
+              <GitHubButton
+                href="https://github.com/KhanShaheb34/nCov19-InteractiveDashboard-BD"
+                data-icon="octicon-star"
+                data-size="small"
+                aria-label="Star KhanShaheb34/nCov19-InteractiveDashboard-BD on GitHub"
+              >
+                Star
+              </GitHubButton>
+            </div>
+            <div className="m-1 d-inline-block">
+              <GitHubButton
+                href="https://github.com/KhanShaheb34/nCov19-InteractiveDashboard-BD/issues"
+                data-icon="octicon-issue-opened"
+                aria-label="Issue KhanShaheb34/nCov19-InteractiveDashboard-BD on GitHub"
+              >
+                Issue
+              </GitHubButton>
+            </div>
+            <div className="m-1 d-inline-block">
+              <GitHubButton
+                href="https://github.com/KhanShaheb34"
+                data-size="small"
+                aria-label="Follow @KhanShaheb34 on GitHub"
+              >
+                Follow @KhanShaheb34
+              </GitHubButton>
+            </div>
+          </div>
 
           <Table striped bordered hover size="sm" className="mb-0">
             <tbody align="center">
@@ -143,8 +174,8 @@ export default class SideBox extends Component {
             animation="border"
             role="status"
             style={{
-              height: "100px",
-              width: "100px",
+              height: "50px",
+              width: "50px",
             }}
             variant="danger"
           >

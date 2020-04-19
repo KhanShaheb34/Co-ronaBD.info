@@ -4,7 +4,6 @@ import { Map, GeoJSON } from "react-leaflet";
 import { Spinner, Modal, Button } from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import "leaflet/dist/leaflet.css";
 
 export default class SimpleExample extends Component {
@@ -13,7 +12,7 @@ export default class SimpleExample extends Component {
     this.state = {
       lat: 23.685,
       lng: 90.3563,
-      zoom: 6.5,
+      zoom: props.width < 768 ? 6 : 7,
       map: null,
       loaded: false,
       data: null,
@@ -29,7 +28,7 @@ export default class SimpleExample extends Component {
   }
 
   componentDidMount() {
-    fetch("/bd.json")
+    fetch("/bd.min.json")
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -108,7 +107,6 @@ export default class SimpleExample extends Component {
       ...this.state,
       modalShow: true,
     });
-    console.log({ name, count });
   }
 
   render() {
@@ -153,7 +151,7 @@ export default class SimpleExample extends Component {
             position: "absolute",
             left: "50%",
             top: "50%",
-            transform: "translate(-50%, -50%)",
+            transform: "translate(-25%, -50%)",
           }}
         >
           <Spinner
@@ -168,7 +166,7 @@ export default class SimpleExample extends Component {
           <span className="sr-only">Loading...</span>
           <p
             align="center"
-            style={{ transform: "translateX( -25%)", color: "grey" }}
+            style={{ transform: "translateX(-25%)", color: "grey" }}
             className="mt-4"
           >
             Please wait while map loads

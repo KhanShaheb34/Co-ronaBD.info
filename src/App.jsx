@@ -5,25 +5,32 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import useWindowDimensions from "./utils/useWindowDimensions";
 
 function App() {
+  const { width } = useWindowDimensions();
+  const isPhone = width < 768;
+
   return (
     <Container fluid className="App">
-      <Row style={{ height: "100vh", backgroundColor: "#ecf0f1" }}>
-        <Col md={8} style={{ height: "100vh" }}>
-          <SimpleExample />
+      <Row style={{ backgroundColor: "#fff" }}>
+        <Col
+          md={8}
+          style={{ height: isPhone ? "70vh" : "100vh", margin: 0, padding: 0 }}
+        >
+          <SimpleExample width={width} />
         </Col>
         <Col
           md={4}
           className="p-5 pr-4"
           style={{
-            overflowY: "scroll",
+            overflowY: isPhone ? null : "scroll",
             backgroundColor: "white",
-            height: "100vh",
+            height: isPhone ? "100%" : "100vh",
             boxShadow: "0px 0px 20px 0px rgba(0,0,0,0.3)",
           }}
         >
-          <SideBox></SideBox>
+          <SideBox />
         </Col>
       </Row>
     </Container>
