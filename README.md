@@ -1,6 +1,6 @@
 # nCov19-InteractiveDashboard-BD
 A interactive dashboard with Bangladesh map showing the number of positive cases in every district.
-[Click here to have a look](https://ncov19-idbbd.herokuapp.com/)
+[Click here to have a look](https://www.co-ronabd.info/)
 
 ## Data Collected From
 
@@ -11,7 +11,7 @@ A interactive dashboard with Bangladesh map showing the number of positive cases
 ## I Used
 
 - [React](https://reactjs.org/) to build UI
-- [Leafet](https://leafletjs.com/) to show the map
+- [Leafet](https://leafletjs.com/) and [react-leaflet](https://react-leaflet.js.org/) to show the map
 - [Bootstrap](https://getbootstrap.com/) to style
 - [MapShaper](http://mapshaper.org/) to compress the map
 
