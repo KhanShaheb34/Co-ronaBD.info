@@ -1,26 +1,29 @@
 # nCov19-InteractiveDashboard-BD
+A interactive dashboard with Bangladesh map showing the number of positive cases in every district.
+[Click here to have a look](https://ncov19-idbbd.herokuapp.com/)
 
-[Click here to have a look at here.](https://ncov19-idbbd.herokuapp.com/)
-
-### Data Collected From
+## Data Collected From
 
 - [IEDCR Website](http://www.iedcr.gov.bd/)
-- [Covid-19 Bangladesh: District-wise data](https://corona-bd.herokuapp.com/district)
+- [Covid-19 Bangladesh: District-wise data](https://github.com/ahmedsadman/covid19-bd)
 - Bangladesh Map GeoJSON from [geodash.gov.bd](https://geodash.gov.bd/)
 
-### I Used
+## I Used
 
 - [React](https://reactjs.org/) to build UI
 - [Leafet](https://leafletjs.com/) to show the map
 - [Bootstrap](https://getbootstrap.com/) to style
 - [MapShaper](http://mapshaper.org/) to compress the map
 
-### Screenshots
+## Screenshots
 
 - Desktop
-  - ![PC Screenshot](/images/sspc.png)
+
+   ![PC Screenshot](/images/sspc.png)
+   
 - Mobile
-  - ![Mobile Screenshot](/images/ssmb.png)
+
+   ![Mobile Screenshot](/images/ssmb.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
