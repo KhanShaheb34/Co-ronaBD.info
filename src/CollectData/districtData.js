@@ -3,44 +3,32 @@ import axios from "axios";
 const url =
   "https://cors-anywhere.herokuapp.com/https://corona-bd.herokuapp.com/district";
 
+const nameMap = [
+  { from: "Dhaka City", to: "Dhaka" },
+  { from: "Barishal", to: "Barisal" },
+  { from: "Jhalokathi", to: "Jhalokati" },
+  { from: "Potuakhali", to: "Patuakhali" },
+  { from: "Chattogram", to: "Chittagong" },
+  { from: "Cumilla", to: "Comilla" },
+  { from: "Cox\u2019s bazar", to: "Cox'S Bazar" },
+  { from: "Laksmipur", to: "Lakshmipur" },
+  { from: "Munshigonj", to: "Munshiganj" },
+  { from: "Netrokona", to: "Netrakona" },
+  { from: "Hobiganj", to: "Habiganj" },
+  { from: "Moulovi Bazar", to: "Moulvibazar" },
+  { from: "B. Baria", to: "Brahamanbaria" },
+  { from: "Narshingdi", to: "Narsingdi" },
+  { from: "Panchagar", to: "Panchagarh" },
+];
+
 export default async () => {
   let res = await axios.get(url);
-  res.data.data[
-    res.data.data.findIndex((dist) => dist.name === "Dhaka City")
-  ].name = "Dhaka";
-  res.data.data[
-    res.data.data.findIndex((dist) => dist.name === "Barishal")
-  ].name = "Barisal";
-  res.data.data[
-    res.data.data.findIndex((dist) => dist.name === "Jhalokathi")
-  ].name = "Jhalokati";
-  res.data.data[
-    res.data.data.findIndex((dist) => dist.name === "Potuakhali")
-  ].name = "Patuakhali";
-  res.data.data[
-    res.data.data.findIndex((dist) => dist.name === "Chattogram")
-  ].name = "Chittagong";
-  res.data.data[
-    res.data.data.findIndex((dist) => dist.name === "Cumilla")
-  ].name = "Comilla";
-  res.data.data[
-    res.data.data.findIndex((dist) => dist.name === "Cox\u2019s bazar")
-  ].name = "Cox'S Bazar";
-  res.data.data[
-    res.data.data.findIndex((dist) => dist.name === "Laksmipur")
-  ].name = "Lakshmipur";
-  res.data.data[
-    res.data.data.findIndex((dist) => dist.name === "Munshigonj")
-  ].name = "Munshiganj";
-  res.data.data[
-    res.data.data.findIndex((dist) => dist.name === "Netrokona")
-  ].name = "Netrakona";
-  res.data.data[
-    res.data.data.findIndex((dist) => dist.name === "Hobiganj")
-  ].name = "Habiganj";
-  res.data.data[
-    res.data.data.findIndex((dist) => dist.name === "Moulovi Bazar")
-  ].name = "Moulvibazar";
+
+  nameMap.map((name) => {
+    return (res.data.data[
+      res.data.data.findIndex((dist) => dist.name === name.from)
+    ].name = name.to);
+  });
 
   return res.data;
 };
