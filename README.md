@@ -1,4 +1,5 @@
 # nCov19-InteractiveDashboard-BD
+
 A interactive dashboard with Bangladesh map showing the number of positive cases in every district.
 [Click here to have a look](https://www.co-ronabd.info/)
 
@@ -14,16 +15,17 @@ A interactive dashboard with Bangladesh map showing the number of positive cases
 - [Leafet](https://leafletjs.com/) and [react-leaflet](https://react-leaflet.js.org/) to show the map
 - [Bootstrap](https://getbootstrap.com/) to style
 - [MapShaper](http://mapshaper.org/) to compress the map
+- [node-html-parser](https://www.npmjs.com/package/node-html-parser) to parse html
 
 ## Screenshots
 
 - Desktop
 
-   ![PC Screenshot](/images/sspc.png)
-   
+  ![PC Screenshot](/images/sspc.png)
+
 - Mobile
 
-   ![Mobile Screenshot](/images/ssmb.png)
+  ![Mobile Screenshot](/images/ssmb.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AllData from "../CollectData/data";
-import { Spinner, Table } from "react-bootstrap";
+import { Spinner, Table, Button } from "react-bootstrap";
 import GitHubButton from "react-github-btn";
 
 export default class SideBox extends Component {
@@ -30,6 +30,19 @@ export default class SideBox extends Component {
           </h3>
 
           <div className="info mb-2" align="center">
+            <div>
+              <Button
+                size="sm"
+                as="a"
+                href="/about"
+                variant="outline-dark"
+                className="p-0 px-1 mb-1"
+              >
+                <small className="p-0">
+                  <b>About</b>
+                </small>
+              </Button>
+            </div>
             <div className="m-1 d-inline-block">
               <GitHubButton
                 href="https://github.com/KhanShaheb34/nCov19-InteractiveDashboard-BD"
