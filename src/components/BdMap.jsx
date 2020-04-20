@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import AllData from "../CollectData/data";
+// import AllData from "../CollectData/data";
+import DistrictData from "../CollectData/districtData";
 import { Map, GeoJSON } from "react-leaflet";
 import { Spinner, Modal, Button } from "react-bootstrap";
 import MouseTooltip from "react-sticky-mouse-tooltip";
@@ -40,12 +41,12 @@ export default class SimpleExample extends Component {
           ...this.state,
           map: data,
         });
-        return AllData();
+        return DistrictData();
       })
       .then((data) => {
         let max = -1;
         let min = 9999999999;
-        data.districts.forEach((district) => {
+        data.data.forEach((district) => {
           if (max < district.count) max = district.count;
           if (min > district.count) min = district.count;
         });
@@ -64,7 +65,7 @@ export default class SimpleExample extends Component {
   }
 
   getCount(name) {
-    const found = this.state.data.districts.find((district) => {
+    const found = this.state.data.data.find((district) => {
       return district.name.toLowerCase() === name.toLowerCase();
     });
     if (!found) return 0;
