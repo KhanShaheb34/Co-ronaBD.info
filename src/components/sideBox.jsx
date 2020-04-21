@@ -64,7 +64,7 @@ export default class SideBox extends Component {
             </div>
           </div>
 
-          <Table striped bordered hover size="sm" className="mb-0">
+          <Table striped bordered hover size="sm">
             <tbody align="center">
               <tr>
                 <th colSpan={2} align="center">
@@ -134,12 +134,8 @@ export default class SideBox extends Component {
               </tr>
             </tbody>
           </Table>
-          <small className="mb-4" style={{ color: "grey" }}>
-            * Updated On:{" "}
-            {new Date(this.state.data.lastUpdateTime).toLocaleString()}
-          </small>
 
-          <Table striped bordered hover className="mt-4 mb-0">
+          <Table striped bordered hover className="mt-4">
             <tbody>
               <tr align="center">
                 <th colSpan={2}>District Wise Data</th>
@@ -156,12 +152,6 @@ export default class SideBox extends Component {
               ))}
             </tbody>
           </Table>
-          <small className="mb-4 mt-0" style={{ color: "grey" }}>
-            * Updated On:{" "}
-            {new Date(
-              this.state.data.district_data_updated_on
-            ).toLocaleString()}
-          </small>
         </div>
       );
     else
