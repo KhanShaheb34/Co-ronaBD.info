@@ -1,21 +1,33 @@
 import React, { Component } from "react";
 import AllData from "../CollectData/data";
-import { Spinner, Table, Button } from "react-bootstrap";
+import { Spinner, Table, Button, Badge } from "react-bootstrap";
 import GitHubButton from "react-github-btn";
 
 export default class SideBox extends Component {
   state = {
     loaded: false,
     data: null,
+    distData: null,
   };
 
   componentDidMount() {
     AllData().then((data) => {
+      let distData = [];
+      data.districts.map((district) => {
+        const percent =
+          ((district.count - district.prev_count) / district.prev_count) * 100;
+        const color = percent > 0 ? "danger" : "success";
+        const sign = percent > 0 ? "▲" : percent === 0 ? "-" : "▼";
+        distData.push({ ...district, percent, color, sign });
+      });
+
       this.setState({
         ...this.state,
         data: data,
+        distData: distData,
         loaded: true,
       });
+      console.log(distData);
     });
   }
 
@@ -144,10 +156,15 @@ export default class SideBox extends Component {
                 <th>District</th>
                 <th>Positive</th>
               </tr>
-              {this.state.data.districts.map((dist) => (
+              {this.state.distData.map((dist) => (
                 <tr key={dist.name}>
                   <td>{dist.name}</td>
-                  <td>{dist.count}</td>
+                  <td>
+                    {dist.count}{" "}
+                    <Badge style={{ float: "right" }} variant={dist.color}>
+                      {dist.sign} {dist.percent}%
+                    </Badge>
+                  </td>
                 </tr>
               ))}
             </tbody>
