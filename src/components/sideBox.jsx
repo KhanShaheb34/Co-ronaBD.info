@@ -18,7 +18,7 @@ export default class SideBox extends Component {
           ((district.count - district.prev_count) / district.prev_count) * 100;
         const color = percent > 0 ? "danger" : "success";
         const sign = percent > 0 ? "▲" : percent === 0 ? "-" : "▼";
-        distData.push({ ...district, percent, color, sign });
+        return distData.push({ ...district, percent, color, sign });
       });
 
       this.setState({
@@ -161,7 +161,11 @@ export default class SideBox extends Component {
                   <td>{dist.name}</td>
                   <td>
                     {dist.count}{" "}
-                    <Badge style={{ float: "right" }} variant={dist.color}>
+                    <Badge
+                      style={{ float: "right", cursor: "pointer" }}
+                      variant={dist.color}
+                      title={`Previous Count: ${dist.prev_count}`}
+                    >
                       {dist.sign} {dist.percent}%
                     </Badge>
                   </td>

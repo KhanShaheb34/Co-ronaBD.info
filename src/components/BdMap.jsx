@@ -173,7 +173,13 @@ export default class SimpleExample extends Component {
               zIndex: 1000,
             }}
           >
-            <span>{this.state.tooltipName}</span>
+            <div align="center">
+              <span>
+                <b>{this.state.tooltipName}</b>
+                <br />
+                Positive Cases: <b>{this.getCount(this.state.tooltipName)}</b>
+              </span>
+            </div>
           </MouseTooltip>
         </React.Fragment>
       );
