@@ -1,4 +1,10 @@
-# nCov19-InteractiveDashboard-BD
+<p align="center">
+<a href="https://www.co-ronabd.info/" align="center">
+<img align="center" width="125" height="165" src="https://github.com/KhanShaheb34/nCov19-InteractiveDashboard-BD/raw/master/images/logo.png">
+</a>
+</p>
+
+# <div align="center">nCov-19 Interactive Dashboard for Bangladesh<div>
 
 A interactive dashboard with Bangladesh map showing the number of positive cases in every district.
 [Click here to have a look](https://www.co-ronabd.info/)
