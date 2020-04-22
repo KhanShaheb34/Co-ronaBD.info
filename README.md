@@ -1,4 +1,4 @@
-<div align="center"> <img source="/images/logo.png" alt="Logo"> </div>
+<div align="center"> ![Logo](/images/logo.png) </div>
   
 # <div align="center">nCov-19 Interactive Dashboard for Bangladesh<div>
 
