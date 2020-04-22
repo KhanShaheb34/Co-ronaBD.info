@@ -1,5 +1,7 @@
-<div align="center"> ![Logo](/images/logo.png) </div>
-  
+<p align="center">
+<img align="center" width="125" height="165" src="https://github.com/KhanShaheb34/nCov19-InteractiveDashboard-BD/raw/master/images/logo.png">
+</p>
+
 # <div align="center">nCov-19 Interactive Dashboard for Bangladesh<div>
 
 A interactive dashboard with Bangladesh map showing the number of positive cases in every district.
