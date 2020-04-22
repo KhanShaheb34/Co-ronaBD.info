@@ -14,10 +14,11 @@ export default class SideBox extends Component {
     AllData().then((data) => {
       let distData = [];
       data.districts.map((district) => {
-        const percent =
-          ((district.count - district.prev_count) / district.prev_count) * 100;
+        const percent = Math.floor(
+          ((district.count - district.prev_count) / district.prev_count) * 100
+        );
         const color = percent > 0 ? "danger" : "success";
-        const sign = percent > 0 ? "▲" : percent === 0 ? "-" : "▼";
+        const sign = percent > 0 ? "▲" : percent === 0 ? "=" : "▼";
         return distData.push({ ...district, percent, color, sign });
       });
 
@@ -27,7 +28,6 @@ export default class SideBox extends Component {
         distData: distData,
         loaded: true,
       });
-      console.log(distData);
     });
   }
 
