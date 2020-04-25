@@ -14,7 +14,6 @@ Have a look at:
 
 ## Data Collected From
 
-- [IEDCR Website](http://www.iedcr.gov.bd/)
 - [Covid-19 Bangladesh: District-wise data](https://github.com/ahmedsadman/covid19-bd)
 - Bangladesh Map GeoJSON from [geodash.gov.bd](https://geodash.gov.bd/)
 
@@ -24,7 +23,6 @@ Have a look at:
 - [Leafet](https://leafletjs.com/) and [react-leaflet](https://react-leaflet.js.org/) to show the map
 - [Bootstrap](https://getbootstrap.com/) to style
 - [MapShaper](http://mapshaper.org/) to compress the map
-- [node-html-parser](https://www.npmjs.com/package/node-html-parser) to parse html
 
 ## Screenshots
 
