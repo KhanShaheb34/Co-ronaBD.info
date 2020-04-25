@@ -7,7 +7,10 @@
 # <div align="center">nCov-19 Interactive Dashboard for Bangladesh<div>
 
 A interactive dashboard with Bangladesh map showing the number of positive cases in every district.
-[Click here to have a look](https://www.co-ronabd.info/)
+
+Have a look at:
+* [Production Build](https://www.co-ronabd.info/)
+* [Development Beta](https://ncov19-idbbd.herokuapp.com/)
 
 ## Data Collected From
 
