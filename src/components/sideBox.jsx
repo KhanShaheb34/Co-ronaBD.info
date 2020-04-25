@@ -1,14 +1,28 @@
 import React, { Component } from "react";
 import AllData from "../CollectData/data";
-import { Spinner, Table, Button, Badge } from "react-bootstrap";
+import {
+  Spinner,
+  Table,
+  Button,
+  Badge,
+  InputGroup,
+  FormControl,
+} from "react-bootstrap";
 import GitHubButton from "react-github-btn";
 
 export default class SideBox extends Component {
-  state = {
-    loaded: false,
-    data: null,
-    distData: null,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      loaded: false,
+      data: null,
+      distData: null,
+      query: "",
+    };
+
+    this.handleSearchBarChange = this.handleSearchBarChange.bind(this);
+    this.searchResults = this.searchResults.bind(this);
+  }
 
   componentDidMount() {
     AllData().then((data) => {
@@ -31,8 +45,19 @@ export default class SideBox extends Component {
     });
   }
 
+  handleSearchBarChange(event) {
+    this.setState({ query: event.target.value });
+    console.log(this.state.query);
+  }
+
+  searchResults(val) {
+    const regex = RegExp(`${this.state.query}`, "i");
+    return regex.test(val.name);
+  }
+
   render() {
-    if (this.state.loaded)
+    const { data, distData, loaded } = this.state;
+    if (loaded)
       return (
         <div>
           <h3 align="center" className="mb-2">
@@ -85,11 +110,11 @@ export default class SideBox extends Component {
               </tr>
               <tr>
                 <td>
-                  <h5 className="m-1">{this.state.data.positive.last24}</h5>
+                  <h5 className="m-1">{data.positive.last24}</h5>
                   <small style={{ color: "grey" }}>In 24 Hours</small>
                 </td>
                 <td>
-                  <h5 className="m-1">{this.state.data.positive.total}</h5>
+                  <h5 className="m-1">{data.positive.total}</h5>
                   <small style={{ color: "grey" }}>Till Now</small>
                 </td>
               </tr>
@@ -100,11 +125,11 @@ export default class SideBox extends Component {
               </tr>
               <tr>
                 <td>
-                  <h5 className="m-1">{this.state.data.recovered.last24}</h5>
+                  <h5 className="m-1">{data.recovered.last24}</h5>
                   <small style={{ color: "grey" }}>In 24 Hours</small>
                 </td>
                 <td>
-                  <h5 className="m-1">{this.state.data.recovered.total}</h5>
+                  <h5 className="m-1">{data.recovered.total}</h5>
                   <small style={{ color: "grey" }}>Till Now</small>
                 </td>
               </tr>
@@ -115,11 +140,11 @@ export default class SideBox extends Component {
               </tr>
               <tr>
                 <td>
-                  <h5 className="m-1">{this.state.data.death.last24}</h5>
+                  <h5 className="m-1">{data.death.last24}</h5>
                   <small style={{ color: "grey" }}>In 24 Hours</small>
                 </td>
                 <td>
-                  <h5 className="m-1">{this.state.data.death.total}</h5>
+                  <h5 className="m-1">{data.death.total}</h5>
                   <small style={{ color: "grey" }}>Till Now</small>
                 </td>
               </tr>
@@ -130,18 +155,18 @@ export default class SideBox extends Component {
               </tr>
               <tr>
                 <td>
-                  <h5 className="m-1">{this.state.data.test.last24}</h5>
+                  <h5 className="m-1">{data.test.last24}</h5>
                   <small style={{ color: "grey" }}>In 24 Hours</small>
                 </td>
                 <td>
-                  <h5 className="m-1">{this.state.data.test.total}</h5>
+                  <h5 className="m-1">{data.test.total}</h5>
                   <small style={{ color: "grey" }}>Till Now</small>
                 </td>
               </tr>
             </tbody>
           </Table>
           <small className="mb-4" style={{ color: "grey" }}>
-            * Updated On: {new Date(this.state.data.updated_on).toUTCString()}
+            * Updated On: {new Date(data.updated_on).toUTCString()}
           </small>
 
           <Table striped bordered hover className="mt-4 mb-0">
@@ -150,10 +175,30 @@ export default class SideBox extends Component {
                 <th colSpan={2}>District Wise Data</th>
               </tr>
               <tr>
+                <th colSpan={2}>
+                  <InputGroup className="m-0 p-0">
+                    <InputGroup.Prepend>
+                      <InputGroup.Text id="search-bar">
+                        <span role="img" aria-label="Search">
+                          🔍
+                        </span>
+                      </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                      as="input"
+                      onChange={this.handleSearchBarChange}
+                      placeholder="Search"
+                      aria-label="Search"
+                      aria-describedby="search-bar"
+                    />
+                  </InputGroup>
+                </th>
+              </tr>
+              <tr>
                 <th>District</th>
                 <th>Positive</th>
               </tr>
-              {this.state.distData.map((dist) => (
+              {distData.filter(this.searchResults).map((dist) => (
                 <tr key={dist.name}>
                   <td>{dist.name}</td>
                   <td>
@@ -172,7 +217,7 @@ export default class SideBox extends Component {
           </Table>
           <small className="mb-4 mt-0" style={{ color: "grey" }}>
             * Updated On:{" "}
-            {new Date(this.state.data.district_data_updated_on).toUTCString()}
+            {new Date(data.district_data_updated_on).toUTCString()}
           </small>
         </div>
       );
