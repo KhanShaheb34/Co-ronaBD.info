@@ -18,10 +18,15 @@ export default class SideBox extends Component {
       data: null,
       distData: null,
       query: "",
+      sortedField: "count",
+      sortAscending: -1,
     };
 
     this.handleSearchBarChange = this.handleSearchBarChange.bind(this);
     this.searchResults = this.searchResults.bind(this);
+    this.sortDistrict = this.sortDistrict.bind(this);
+    this.sortByCount = this.sortByCount.bind(this);
+    this.sortByName = this.sortByName.bind(this);
   }
 
   componentDidMount() {
@@ -33,7 +38,12 @@ export default class SideBox extends Component {
         );
         const color = percent > 0 ? "danger" : "success";
         const sign = percent > 0 ? "▲" : percent === 0 ? "=" : "▼";
-        return distData.push({ ...district, percent, color, sign });
+        return distData.push({
+          ...district,
+          percent,
+          color,
+          sign,
+        });
       });
 
       this.setState({
@@ -47,7 +57,6 @@ export default class SideBox extends Component {
 
   handleSearchBarChange(event) {
     this.setState({ query: event.target.value });
-    console.log(this.state.query);
   }
 
   searchResults(val) {
@@ -55,8 +64,40 @@ export default class SideBox extends Component {
     return regex.test(val.name);
   }
 
+  sortDistrict(a, b) {
+    const { sortedField, sortAscending } = this.state;
+
+    if (a[sortedField] < b[sortedField]) {
+      return -1 * sortAscending;
+    }
+    if (a[sortedField] > b[sortedField]) {
+      return 1 * sortAscending;
+    }
+    return 0;
+  }
+
+  sortByName() {
+    if (this.state.sortedField === "name") {
+      this.setState({
+        sortAscending: this.state.sortAscending * -1,
+      });
+    } else {
+      this.setState({ sortedField: "name", sortAscending: 1 });
+    }
+  }
+
+  sortByCount() {
+    if (this.state.sortedField === "count") {
+      this.setState({
+        sortAscending: this.state.sortAscending * -1,
+      });
+    } else {
+      this.setState({ sortedField: "count", sortAscending: -1 });
+    }
+  }
+
   render() {
-    const { data, distData, loaded } = this.state;
+    const { data, distData, loaded, sortedField, sortAscending } = this.state;
     if (loaded)
       return (
         <div>
@@ -195,24 +236,46 @@ export default class SideBox extends Component {
                 </th>
               </tr>
               <tr>
-                <th>District</th>
-                <th>Positive</th>
+                <th onClick={this.sortByName} style={{ cursor: "pointer" }}>
+                  District
+                  {sortedField === "name" && sortAscending === 1 && (
+                    <span style={{ float: "right" }}>▲</span>
+                  )}
+                  {sortedField === "name" && sortAscending === -1 && (
+                    <span style={{ float: "right" }}>▼</span>
+                  )}
+                </th>
+                <th onClick={this.sortByCount} style={{ cursor: "pointer" }}>
+                  Positive
+                  {sortedField === "count" && sortAscending === 1 && (
+                    <span style={{ float: "right" }}>▲</span>
+                  )}
+                  {sortedField === "count" && sortAscending === -1 && (
+                    <span style={{ float: "right" }}>▼</span>
+                  )}
+                </th>
               </tr>
-              {distData.filter(this.searchResults).map((dist) => (
-                <tr key={dist.name}>
-                  <td>{dist.name}</td>
-                  <td>
-                    {dist.count}{" "}
-                    <Badge
-                      style={{ float: "right", cursor: "pointer" }}
-                      variant={dist.color}
-                      title={`Previous Count: ${dist.prev_count}`}
-                    >
-                      {dist.sign} {dist.percent}%
-                    </Badge>
-                  </td>
-                </tr>
-              ))}
+              {distData
+                .filter(this.searchResults)
+                .sort(this.sortDistrict)
+                .map((dist) => (
+                  <tr key={dist.name}>
+                    <td>{dist.name}</td>
+                    <td>
+                      {dist.count}{" "}
+                      <Badge
+                        style={{
+                          float: "right",
+                          cursor: "pointer",
+                        }}
+                        variant={dist.color}
+                        title={`Previous Count: ${dist.prev_count}`}
+                      >
+                        {dist.sign} {dist.percent}%
+                      </Badge>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </Table>
           <small className="mb-4 mt-0" style={{ color: "grey" }}>
