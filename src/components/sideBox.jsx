@@ -85,13 +85,11 @@ export default class SideBox extends Component {
               </tr>
               <tr>
                 <td>
-                  <h5 className="m-1">
-                    {this.state.data.test_positive_24_hour}
-                  </h5>
+                  <h5 className="m-1">{this.state.data.positive.last24}</h5>
                   <small style={{ color: "grey" }}>In 24 Hours</small>
                 </td>
                 <td>
-                  <h5 className="m-1">{this.state.data.test_positive_total}</h5>
+                  <h5 className="m-1">{this.state.data.positive.total}</h5>
                   <small style={{ color: "grey" }}>Till Now</small>
                 </td>
               </tr>
@@ -102,11 +100,11 @@ export default class SideBox extends Component {
               </tr>
               <tr>
                 <td>
-                  <h5 className="m-1">{this.state.data.recovered_24_hour}</h5>
+                  <h5 className="m-1">{this.state.data.recovered.last24}</h5>
                   <small style={{ color: "grey" }}>In 24 Hours</small>
                 </td>
                 <td>
-                  <h5 className="m-1">{this.state.data.recovered_total}</h5>
+                  <h5 className="m-1">{this.state.data.recovered.total}</h5>
                   <small style={{ color: "grey" }}>Till Now</small>
                 </td>
               </tr>
@@ -117,11 +115,11 @@ export default class SideBox extends Component {
               </tr>
               <tr>
                 <td>
-                  <h5 className="m-1">{this.state.data.death_24_hour}</h5>
+                  <h5 className="m-1">{this.state.data.death.last24}</h5>
                   <small style={{ color: "grey" }}>In 24 Hours</small>
                 </td>
                 <td>
-                  <h5 className="m-1">{this.state.data.death_total}</h5>
+                  <h5 className="m-1">{this.state.data.death.total}</h5>
                   <small style={{ color: "grey" }}>Till Now</small>
                 </td>
               </tr>
@@ -132,15 +130,11 @@ export default class SideBox extends Component {
               </tr>
               <tr>
                 <td>
-                  <h5 className="m-1">
-                    {this.state.data.test_conducted_24_hour}
-                  </h5>
+                  <h5 className="m-1">{this.state.data.test.last24}</h5>
                   <small style={{ color: "grey" }}>In 24 Hours</small>
                 </td>
                 <td>
-                  <h5 className="m-1">
-                    {this.state.data.test_conducted_total}
-                  </h5>
+                  <h5 className="m-1">{this.state.data.test.total}</h5>
                   <small style={{ color: "grey" }}>Till Now</small>
                 </td>
               </tr>
