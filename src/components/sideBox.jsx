@@ -238,26 +238,26 @@ export default class SideBox extends Component {
               <tr>
                 <th onClick={this.sortByName} style={{ cursor: "pointer" }}>
                   District
-                  {sortedField === "name" && sortAscending === 1 && (
-                    <span style={{ float: "right" }}>⬆</span>
-                  )}
                   {sortedField === "name" && sortAscending === -1 && (
-                    <span style={{ float: "right" }}>⬇</span>
+                    <span style={{ float: "right" }}>⇈</span>
+                  )}
+                  {sortedField === "name" && sortAscending === 1 && (
+                    <span style={{ float: "right" }}>⇊</span>
                   )}
                   {sortedField === "count" && (
-                    <span style={{ float: "right" }}>⬍</span>
+                    <span style={{ float: "right", color: "grey" }}>⇵</span>
                   )}
                 </th>
                 <th onClick={this.sortByCount} style={{ cursor: "pointer" }}>
                   Positive
-                  {sortedField === "count" && sortAscending === 1 && (
-                    <span style={{ float: "right" }}>⬆</span>
-                  )}
                   {sortedField === "count" && sortAscending === -1 && (
-                    <span style={{ float: "right" }}>⬇</span>
+                    <span style={{ float: "right" }}>⇈</span>
+                  )}
+                  {sortedField === "count" && sortAscending === 1 && (
+                    <span style={{ float: "right" }}>⇊</span>
                   )}
                   {sortedField === "name" && (
-                    <span style={{ float: "right" }}>⬍</span>
+                    <span style={{ float: "right", color: "grey" }}>⇵</span>
                   )}
                 </th>
               </tr>
