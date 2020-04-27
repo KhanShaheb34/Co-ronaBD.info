@@ -7,6 +7,7 @@ import MouseTooltip from "react-sticky-mouse-tooltip";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "leaflet/dist/leaflet.css";
+import { LatLngBounds, LatLng } from "leaflet";
 
 export default class SimpleExample extends Component {
   constructor(props) {
@@ -129,6 +130,8 @@ export default class SimpleExample extends Component {
 
   render() {
     const position = [this.state.lat, this.state.lng];
+    const southwest = new LatLng(20.8, 88);
+    const northeast = new LatLng(26.4, 92.5);
     if (this.state.loaded)
       return (
         <React.Fragment>
@@ -140,6 +143,9 @@ export default class SimpleExample extends Component {
             }}
             center={position}
             zoom={this.state.zoom}
+            maxZoom={10}
+            minZoom={this.state.zoom}
+            maxBounds={new LatLngBounds(southwest, northeast)}
           >
             <GeoJSON
               data={this.state.map}
