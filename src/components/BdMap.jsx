@@ -68,7 +68,9 @@ export default class SimpleExample extends Component {
     const found = this.state.data.data.find((district) => {
       return district.name.toLowerCase() === name.toLowerCase();
     });
-    if (!found) return 0;
+    if (!found) {
+      return 0;
+    }
     return found.count;
   }
 
