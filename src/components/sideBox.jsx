@@ -102,7 +102,7 @@ export default class SideBox extends Component {
       return (
         <div>
           <h3 align="center" className="mb-2">
-            nCov-19
+            Covid-19
             <br />
             Interactive Dashboard for Bangladesh
           </h3>
