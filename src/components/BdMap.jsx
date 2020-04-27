@@ -130,8 +130,8 @@ export default class SimpleExample extends Component {
 
   render() {
     const position = [this.state.lat, this.state.lng];
-    const southwest = new LatLng(20.8, 88);
-    const northeast = new LatLng(26.4, 92.5);
+    const southwest = new LatLng(20.7, 87.9);
+    const northeast = new LatLng(26.5, 92.6);
     if (this.state.loaded)
       return (
         <React.Fragment>
