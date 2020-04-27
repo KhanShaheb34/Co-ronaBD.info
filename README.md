@@ -9,8 +9,9 @@
 A interactive dashboard with Bangladesh map showing the number of positive cases in every district.
 
 Have a look at:
-* [Production Build](https://www.co-ronabd.info/)
-* [Development Beta](https://ncov19-idbbd.herokuapp.com/)
+
+- [Production Build](https://www.co-ronabd.info/)
+- [Development Beta](https://ncov19-idbbd.herokuapp.com/)
 
 ## Data Collected From
 
@@ -28,7 +29,7 @@ Have a look at:
 
 - Desktop
 
-  ![PC Screenshot](/images/sspc.png)
+  ![PC Screenshot](/public/preview.png)
 
 - Mobile
 

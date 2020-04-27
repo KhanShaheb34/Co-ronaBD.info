@@ -7,8 +7,21 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="A interactive dashboard with Bangladesh map for tracking the number of positive cases in every district"
     />
+    <meta
+      property="og:title"
+      content="Covid-19 Interactive Dashboard for Bangladesh"
+    />
+    <meta property="og:image" content="%PUBLIC_URL%/preview.png" />
+    <meta
+      property="og:description"
+      content="A interactive dashboard with Bangladesh map for tracking the number of positive cases in every district"
+    />
+    <meta property="og:url" content="https://www.co-ronabd.info/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:site_name" content="Covid-19 Interactive Dashboard" />
+    <meta name="twitter:image:alt" content="Covid-19 Interactive Dashboard" />
     <style>
       * {
         margin: 0;
@@ -16,13 +29,18 @@
       }
     </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164502464-1"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-164502464-1"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'UA-164502464-1');
+      gtag("config", "UA-164502464-1");
     </script>
 
     <!--
@@ -34,7 +52,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>nCov19-IDBBD</title>
+    <title>Covid-19 Interactive Dashboard for Bangladesh</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
