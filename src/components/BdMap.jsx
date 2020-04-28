@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import AllData from "../CollectData/data";
 import DistrictData from "../CollectData/districtData";
 import { Map, GeoJSON } from "react-leaflet";
 import { Spinner, Modal, Button } from "react-bootstrap";
@@ -9,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "leaflet/dist/leaflet.css";
 import { LatLngBounds, LatLng } from "leaflet";
 
-export default class SimpleExample extends Component {
+export default class BDMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,19 +61,19 @@ export default class SimpleExample extends Component {
   }
   getCityName = (name) => {
     let ret = "";
-    for(let i = 0; i<name.length; i++)
-      if(name.charAt(i)===' ' || name.charAt(i)==='(') break;
+    for (let i = 0; i < name.length; i++)
+      if (name.charAt(i) === " " || name.charAt(i) === "(") break;
       else ret = ret + name.charAt(i);
     return ret;
-  }
+  };
   componentDidUpdate = (prevProps, prevState) => {
-    if(prevProps.highLightCity !== this.props.highLightCity) {
+    if (prevProps.highLightCity !== this.props.highLightCity) {
       const cityName = this.getCityName(this.props.highLightCity);
       this.setState({
-        tooltipName: cityName
-      })
+        tooltipName: cityName,
+      });
     }
-  }
+  };
 
   scale(num, in_min, in_max, out_min, out_max) {
     return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
@@ -105,11 +104,11 @@ export default class SimpleExample extends Component {
   style(feature) {
     const fillOpacity = this.getFillOpacity(feature.properties.NAME_2);
     const cityName = feature.properties.NAME_2;
-    if(cityName === this.state.tooltipName) {
+    if (cityName === this.state.tooltipName) {
       return {
         fillColor: "#e74c3c",
-        weight: 5,
-        opacity: 0.7,
+        weight: 3,
+        opacity: 1,
         color: "#2c3e50",
         fillOpacity: fillOpacity,
       };
@@ -179,7 +178,7 @@ export default class SimpleExample extends Component {
               onMouseOut={this.handleMapMouseOut}
             ></GeoJSON>
           </Map>
-          
+
           <Modal
             show={this.state.modalShow}
             size="sm"
@@ -197,7 +196,7 @@ export default class SimpleExample extends Component {
           </Modal>
           <MouseTooltip
             visible={this.state.tooltipShow}
-            offsetY={20}
+            offsetY={25}
             className="rounded px-1"
             style={{
               opacity: 1,
