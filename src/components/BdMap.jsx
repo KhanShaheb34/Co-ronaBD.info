@@ -60,6 +60,21 @@ export default class SimpleExample extends Component {
         });
       });
   }
+  getCityName = (name) => {
+    let ret = "";
+    for(let i = 0; i<name.length; i++)
+      if(name.charAt(i)===' ' || name.charAt(i)==='(') break;
+      else ret = ret + name.charAt(i);
+    return ret;
+  }
+  componentDidUpdate = (prevProps, prevState) => {
+    if(prevProps.highLightCity !== this.props.highLightCity) {
+      const cityName = this.getCityName(this.props.highLightCity);
+      this.setState({
+        tooltipName: cityName
+      })
+    }
+  }
 
   scale(num, in_min, in_max, out_min, out_max) {
     return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
@@ -89,7 +104,16 @@ export default class SimpleExample extends Component {
 
   style(feature) {
     const fillOpacity = this.getFillOpacity(feature.properties.NAME_2);
-
+    const cityName = feature.properties.NAME_2;
+    if(cityName === this.state.tooltipName) {
+      return {
+        fillColor: "#e74c3c",
+        weight: 5,
+        opacity: 0.7,
+        color: "#2c3e50",
+        fillOpacity: fillOpacity,
+      };
+    }
     return {
       fillColor: "#e74c3c",
       weight: 1,
@@ -155,6 +179,7 @@ export default class SimpleExample extends Component {
               onMouseOut={this.handleMapMouseOut}
             ></GeoJSON>
           </Map>
+          
           <Modal
             show={this.state.modalShow}
             size="sm"

@@ -7,10 +7,10 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import useWindowDimensions from "./utils/useWindowDimensions";
 
-function App() {
+function App () {
   const { width } = useWindowDimensions();
+  const [highLightCity, setHighLightCity] = React.useState("");
   const isPhone = width < 768;
-
   return (
     <Container fluid className="App">
       <Row style={{ backgroundColor: "#fff" }}>
@@ -18,7 +18,7 @@ function App() {
           md={8}
           style={{ height: isPhone ? "70vh" : "100vh", margin: 0, padding: 0 }}
         >
-          <SimpleExample width={width} />
+          <SimpleExample highLightCity={highLightCity} width={width} />
         </Col>
         <Col
           md={4}
@@ -30,7 +30,7 @@ function App() {
             boxShadow: "0px 0px 20px 0px rgba(0,0,0,0.3)",
           }}
         >
-          <SideBox />
+          <SideBox selectOnMap={(cityName)=>setHighLightCity(cityName)}/>
         </Col>
       </Row>
     </Container>
