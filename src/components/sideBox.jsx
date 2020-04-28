@@ -54,6 +54,9 @@ export default class SideBox extends Component {
       });
     });
   }
+  selectOnMap = (distName) => {
+    this.props.selectOnMap(distName)
+  }
 
   handleSearchBarChange(event) {
     this.setState({ query: event.target.value });
@@ -265,7 +268,7 @@ export default class SideBox extends Component {
                 .filter(this.searchResults)
                 .sort(this.sortDistrict)
                 .map((dist) => (
-                  <tr key={dist.name}>
+                  <tr key={dist.name} onMouseOver={()=>this.selectOnMap(dist.name)} onMouseOut={()=>this.selectOnMap("")} style={{cursor: "pointer"}}>
                     <td>{dist.name}</td>
                     <td>
                       {dist.count}{" "}
