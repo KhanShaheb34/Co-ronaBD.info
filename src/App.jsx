@@ -1,5 +1,5 @@
 import React from "react";
-import SimpleExample from "./components/BdMap";
+import BDMap from "./components/BdMap";
 import SideBox from "./components/sideBox";
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -7,7 +7,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import useWindowDimensions from "./utils/useWindowDimensions";
 
-function App () {
+function App() {
   const { width } = useWindowDimensions();
   const [highLightCity, setHighLightCity] = React.useState("");
   const isPhone = width < 768;
@@ -18,7 +18,7 @@ function App () {
           md={8}
           style={{ height: isPhone ? "70vh" : "100vh", margin: 0, padding: 0 }}
         >
-          <SimpleExample highLightCity={highLightCity} width={width} />
+          <BDMap highLightCity={highLightCity} width={width} />
         </Col>
         <Col
           md={4}
@@ -30,7 +30,7 @@ function App () {
             boxShadow: "0px 0px 20px 0px rgba(0,0,0,0.3)",
           }}
         >
-          <SideBox selectOnMap={(cityName)=>setHighLightCity(cityName)}/>
+          <SideBox selectOnMap={(cityName) => setHighLightCity(cityName)} />
         </Col>
       </Row>
     </Container>
