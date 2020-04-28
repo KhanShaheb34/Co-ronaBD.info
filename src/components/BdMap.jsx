@@ -70,7 +70,6 @@ export default class SimpleExample extends Component {
   componentDidUpdate = (prevProps, prevState) => {
     if(prevProps.highLightCity !== this.props.highLightCity) {
       const cityName = this.getCityName(this.props.highLightCity);
-      const tooltipShow = cityName === "" ? false : true;
       this.setState({
         tooltipName: cityName
       })
