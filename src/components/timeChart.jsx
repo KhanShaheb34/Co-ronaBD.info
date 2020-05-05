@@ -41,7 +41,7 @@ const TimeChart = (props) => {
           stroke="#e74c3c"
           strokeWidth={2}
           dot={false}
-          opacity={0.8}
+          legendType="rect"
         />
         <Line
           type="monotone"
@@ -49,7 +49,7 @@ const TimeChart = (props) => {
           stroke="#27ae60"
           strokeWidth={2}
           dot={false}
-          opacity={0.8}
+          legendType="rect"
         />
         <Line
           type="monotone"
@@ -57,7 +57,7 @@ const TimeChart = (props) => {
           stroke="#f39c12"
           strokeWidth={2}
           dot={false}
-          opacity={0.8}
+          legendType="rect"
         />
       </LineChart>
     </ResponsiveContainer>
