@@ -9,6 +9,7 @@ import {
   FormControl,
 } from "react-bootstrap";
 import GitHubButton from "react-github-btn";
+import TimeChart from "./timeChart";
 
 export default class SideBox extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ export default class SideBox extends Component {
       query: "",
       sortedField: "count",
       sortAscending: -1,
+      timeData: null,
     };
 
     this.handleSearchBarChange = this.handleSearchBarChange.bind(this);
@@ -30,33 +32,47 @@ export default class SideBox extends Component {
   }
 
   componentDidMount() {
-    AllData().then((data) => {
-      let distData = [];
-      data.districts.map((district) => {
-        const percent = Math.floor(
-          ((district.count - district.prev_count) / district.prev_count) * 100
-        );
-        const color = percent > 0 ? "danger" : "success";
-        const sign = percent > 0 ? "▲" : percent === 0 ? "=" : "▼";
-        return distData.push({
-          ...district,
-          percent,
-          color,
-          sign,
+    AllData()
+      .then((data) => {
+        let distData = [];
+        data.districts.map((district) => {
+          const percent = Math.floor(
+            ((district.count - district.prev_count) / district.prev_count) * 100
+          );
+          const color = percent > 0 ? "danger" : "success";
+          const sign = percent > 0 ? "▲" : percent === 0 ? "=" : "▼";
+          return distData.push({
+            ...district,
+            percent,
+            color,
+            sign,
+          });
         });
-      });
 
-      this.setState({
-        ...this.state,
-        data: data,
-        distData: distData,
-        loaded: true,
+        this.setState({
+          data: data,
+          distData: distData,
+        });
+
+        return fetch("https://pomber.github.io/covid19/timeseries.json");
+      })
+      .then((response) => response.json())
+      .then((res) => {
+        let bdData = res["Bangladesh"];
+        bdData.splice(0, 46);
+
+        let fixRecoverData = this.state.data;
+        fixRecoverData.recovered.total = bdData[bdData.length - 1].recovered;
+        fixRecoverData.recovered.last24 =
+          bdData[bdData.length - 1].recovered -
+          bdData[bdData.length - 2].recovered;
+
+        this.setState({ timeData: bdData, data: fixRecoverData, loaded: true });
       });
-    });
   }
   selectOnMap = (distName) => {
-    this.props.selectOnMap(distName)
-  }
+    this.props.selectOnMap(distName);
+  };
 
   handleSearchBarChange(event) {
     this.setState({ query: event.target.value });
@@ -213,6 +229,8 @@ export default class SideBox extends Component {
             * Updated On: {new Date(data.updated_on).toUTCString()}
           </small>
 
+          <TimeChart data={this.state.timeData} />
+
           <Table striped bordered hover className="mt-4 mb-0">
             <tbody>
               <tr align="center">
@@ -268,7 +286,12 @@ export default class SideBox extends Component {
                 .filter(this.searchResults)
                 .sort(this.sortDistrict)
                 .map((dist) => (
-                  <tr key={dist.name} onMouseOver={()=>this.selectOnMap(dist.name)} onMouseOut={()=>this.selectOnMap("")} style={{cursor: "pointer"}}>
+                  <tr
+                    key={dist.name}
+                    onMouseOver={() => this.selectOnMap(dist.name)}
+                    onMouseOut={() => this.selectOnMap("")}
+                    style={{ cursor: "pointer" }}
+                  >
                     <td>{dist.name}</td>
                     <td>
                       {dist.count}{" "}
