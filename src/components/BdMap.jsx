@@ -90,11 +90,12 @@ export default class BDMap extends Component {
   }
 
   getFillOpacity(name) {
-    const count = this.getCount(name);
+    const count = parseInt(this.getCount(name));
     if (!count) return 0;
+
     return this.scale(
       Math.log10(count),
-      Math.log10(this.state.min),
+      Math.log10(this.state.min + 1),
       Math.log10(this.state.max),
       0.3,
       1
@@ -205,7 +206,7 @@ export default class BDMap extends Component {
               zIndex: 1000,
             }}
           >
-            <div align="center">
+            <div align="center" className="p-1">
               <span>
                 <b>{this.state.tooltipName}</b>
                 <br />
