@@ -19,6 +19,7 @@ const nameMap = [
   { from: "Narshingdi", to: "Narsingdi" },
   { from: "Panchagar", to: "Panchagarh" },
   { from: "Chapainawabganj", to: "Nawabganj" },
+  { from: "Khagrachari", to: "Khagrachhari" },
 ];
 
 export default async () => {
