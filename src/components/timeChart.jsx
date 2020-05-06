@@ -11,11 +11,11 @@ import {
 } from "recharts";
 
 const DataFormater = (number) => {
-  if (number > 1000000000) {
+  if (number >= 1000000000) {
     return (number / 1000000000).toString() + "B";
-  } else if (number > 1000000) {
+  } else if (number >= 1000000) {
     return (number / 1000000).toString() + "M";
-  } else if (number > 1000) {
+  } else if (number >= 1000) {
     return (number / 1000).toString() + "K";
   } else {
     return number.toString();
@@ -28,7 +28,7 @@ const TimeChart = (props) => {
   const { data } = props;
   return (
     <ResponsiveContainer width="100%" height={350}>
-      <LineChart data={data} margin={{ bottom: 25, top: 25, left: -25 }}>
+      <LineChart data={data} margin={{ bottom: 25, left: -25 }}>
         <XAxis dataKey="date" tickFormatter={DateFormater}>
           <Label value="Date" offset={0} position="bottom" />
         </XAxis>

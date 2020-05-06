@@ -22,6 +22,8 @@ export default class SideBox extends Component {
       sortedField: "count",
       sortAscending: -1,
       timeData: null,
+      dailyData: null,
+      showTimeChart: true,
     };
 
     this.handleSearchBarChange = this.handleSearchBarChange.bind(this);
@@ -67,7 +69,22 @@ export default class SideBox extends Component {
           bdData[bdData.length - 1].recovered -
           bdData[bdData.length - 2].recovered;
 
-        this.setState({ timeData: bdData, data: fixRecoverData, loaded: true });
+        let dailyData = bdData.map((val, index, data) => {
+          if (index === 0) return val;
+          return {
+            date: val.date,
+            confirmed: val.confirmed - data[index - 1].confirmed,
+            deaths: val.deaths - data[index - 1].deaths,
+            recovered: val.recovered - data[index - 1].recovered,
+          };
+        });
+
+        this.setState({
+          timeData: bdData,
+          data: fixRecoverData,
+          loaded: true,
+          dailyData,
+        });
       });
   }
   selectOnMap = (distName) => {
@@ -116,7 +133,17 @@ export default class SideBox extends Component {
   }
 
   render() {
-    const { data, distData, loaded, sortedField, sortAscending } = this.state;
+    const {
+      data,
+      distData,
+      loaded,
+      sortedField,
+      sortAscending,
+      timeData,
+      dailyData,
+      showTimeChart,
+    } = this.state;
+    const sentData = showTimeChart ? timeData : dailyData;
     if (loaded)
       return (
         <div>
@@ -229,7 +256,18 @@ export default class SideBox extends Component {
             * Updated On: {new Date(data.updated_on).toUTCString()}
           </small>
 
-          <TimeChart data={this.state.timeData} />
+          <Button
+            className="mt-4 mb-2"
+            size="sm"
+            variant="outline-secondary"
+            block
+            onClick={() => {
+              this.setState({ showTimeChart: !this.state.showTimeChart });
+            }}
+          >
+            {showTimeChart ? "Show Daily Cases" : "Show Cumulative Data"}
+          </Button>
+          <TimeChart data={sentData} />
 
           <Table striped bordered hover className="mt-4 mb-0">
             <tbody>
