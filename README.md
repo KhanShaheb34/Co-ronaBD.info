@@ -16,6 +16,7 @@ Have a look at:
 ## Data Collected From
 
 - [Covid-19 Bangladesh: District-wise data](https://github.com/ahmedsadman/covid19-bd)
+- [JSON time-series of coronavirus cases](https://github.com/pomber/covid19)
 - Bangladesh Map GeoJSON from [geodash.gov.bd](https://geodash.gov.bd/)
 
 ## I Used
