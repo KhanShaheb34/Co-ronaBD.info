@@ -63,12 +63,6 @@ export default class SideBox extends Component {
         let bdData = res["Bangladesh"];
         bdData.splice(0, 46);
 
-        let fixRecoverData = this.state.data;
-        fixRecoverData.recovered.total = bdData[bdData.length - 1].recovered;
-        fixRecoverData.recovered.last24 =
-          bdData[bdData.length - 1].recovered -
-          bdData[bdData.length - 2].recovered;
-
         let dailyData = bdData.map((val, index, data) => {
           if (index === 0) return val;
           return {
@@ -81,9 +75,8 @@ export default class SideBox extends Component {
 
         this.setState({
           timeData: bdData,
-          data: fixRecoverData,
-          loaded: true,
           dailyData,
+          loaded: true,
         });
       });
   }
