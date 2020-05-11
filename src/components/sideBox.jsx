@@ -39,7 +39,9 @@ export default class SideBox extends Component {
         let distData = [];
         data.districts.map((district) => {
           const percent = Math.floor(
-            ((district.count - district.prev_count) / district.prev_count) * 100
+            ((district.count - district.prev_count) /
+              Math.max(1, district.prev_count)) *
+              100
           );
           const color = percent > 0 ? "danger" : "success";
           const sign = percent > 0 ? "▲" : percent === 0 ? "=" : "▼";
