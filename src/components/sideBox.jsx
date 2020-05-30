@@ -208,9 +208,12 @@ export default class SideBox extends Component {
               </tr>
               <tr>
                 <td>
-                  {/* TODO: Change Total Recovered */}
-                  <h5 className="m-1">{data.totalRecovered}</h5>
-                  <small style={{ color: "grey" }}>In 24 Hours</small>
+                  <h5 className="m-1">
+                    {dailyData[dailyData.length - 1].recovered}
+                  </h5>
+                  <small style={{ color: "grey" }}>
+                    In 24 Hours <sup>!</sup>{" "}
+                  </small>
                 </td>
                 <td>
                   <h5 className="m-1">{data.totalRecovered}</h5>
@@ -268,7 +271,9 @@ export default class SideBox extends Component {
             </tbody>
           </Table>
           <small className="mb-4" style={{ color: "grey" }}>
-            * Updated On: {new Date(data.lastUpdated).toUTCString()}
+            * Updated On: {new Date(data.lastUpdated).toUTCString()} <br />
+            <sup>!</sup> Recovered count for last 24 hours might be backdated
+            for a day
           </small>
 
           <Button
