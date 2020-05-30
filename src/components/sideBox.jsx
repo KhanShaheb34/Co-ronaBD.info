@@ -38,16 +38,14 @@ export default class SideBox extends Component {
       .then((data) => {
         let distData = [];
         data.districts.map((district) => {
-          const percent = Math.floor(
-            ((district.count - district.prev_count) /
-              Math.max(1, district.prev_count)) *
-              100
-          );
-          const color = percent > 0 ? "danger" : "success";
-          const sign = percent > 0 ? "▲" : percent === 0 ? "=" : "▼";
+          const increment = district.count - district.prev_count;
+
+          const color =
+            increment > 0 ? "danger" : increment === 0 ? "warning" : "success";
+          const sign = increment > 0 ? "+" : increment === 0 ? "" : "-";
           return distData.push({
             ...district,
-            percent,
+            increment,
             color,
             sign,
           });
@@ -207,7 +205,7 @@ export default class SideBox extends Component {
                 </th>
               </tr>
               <tr>
-                <td>
+                <td title="Recovered count for last 24 hours might be backdated">
                   <h5 className="m-1">
                     {dailyData[dailyData.length - 1].recovered}
                   </h5>
@@ -273,7 +271,6 @@ export default class SideBox extends Component {
           <small className="mb-4" style={{ color: "grey" }}>
             * Updated On: {new Date(data.lastUpdated).toUTCString()} <br />
             <sup>!</sup> Recovered count for last 24 hours might be backdated
-            for a day
           </small>
 
           <Button
@@ -361,17 +358,13 @@ export default class SideBox extends Component {
                         variant={dist.color}
                         title={`Previous Count: ${dist.prev_count}`}
                       >
-                        {dist.sign} {dist.percent}%
+                        {dist.sign} {dist.increment}
                       </Badge>
                     </td>
                   </tr>
                 ))}
             </tbody>
           </Table>
-          <small className="mb-4 mt-0" style={{ color: "grey" }}>
-            * Updated On:{" "}
-            {new Date(data.district_data_updated_on).toUTCString()}
-          </small>
         </div>
       );
     else
