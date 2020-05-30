@@ -28,7 +28,7 @@ const TimeChart = (props) => {
   const { data } = props;
   return (
     <ResponsiveContainer width="100%" height={350}>
-      <LineChart data={data} margin={{ bottom: 25, left: -25 }}>
+      <LineChart data={data} margin={{ bottom: 25 }}>
         <XAxis dataKey="date" tickFormatter={DateFormater}>
           <Label value="Date" offset={0} position="bottom" />
         </XAxis>

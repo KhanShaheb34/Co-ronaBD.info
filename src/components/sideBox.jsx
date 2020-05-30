@@ -52,9 +52,10 @@ export default class SideBox extends Component {
             sign,
           });
         });
+        console.log(data[0]);
 
         this.setState({
-          data: data,
+          data: data[0],
           distData: distData,
         });
 
@@ -192,11 +193,11 @@ export default class SideBox extends Component {
               </tr>
               <tr>
                 <td>
-                  <h5 className="m-1">{data.positive.last24}</h5>
+                  <h5 className="m-1">{data.dailyConfirmed}</h5>
                   <small style={{ color: "grey" }}>In 24 Hours</small>
                 </td>
                 <td>
-                  <h5 className="m-1">{data.positive.total}</h5>
+                  <h5 className="m-1">{data.totalConfirmed}</h5>
                   <small style={{ color: "grey" }}>Till Now</small>
                 </td>
               </tr>
@@ -207,11 +208,12 @@ export default class SideBox extends Component {
               </tr>
               <tr>
                 <td>
-                  <h5 className="m-1">{data.recovered.last24}</h5>
+                  {/* TODO: Change Total Recovered */}
+                  <h5 className="m-1">{data.totalRecovered}</h5>
                   <small style={{ color: "grey" }}>In 24 Hours</small>
                 </td>
                 <td>
-                  <h5 className="m-1">{data.recovered.total}</h5>
+                  <h5 className="m-1">{data.totalRecovered}</h5>
                   <small style={{ color: "grey" }}>Till Now</small>
                 </td>
               </tr>
@@ -222,33 +224,51 @@ export default class SideBox extends Component {
               </tr>
               <tr>
                 <td>
-                  <h5 className="m-1">{data.death.last24}</h5>
+                  <h5 className="m-1">{data.dailyDeaths}</h5>
                   <small style={{ color: "grey" }}>In 24 Hours</small>
                 </td>
                 <td>
-                  <h5 className="m-1">{data.death.total}</h5>
+                  <h5 className="m-1">{data.totalDeaths}</h5>
                   <small style={{ color: "grey" }}>Till Now</small>
                 </td>
               </tr>
               <tr>
                 <th colSpan={2} align="center">
-                  Test Conducted
+                  Per Million
                 </th>
               </tr>
               <tr>
                 <td>
-                  <h5 className="m-1">{data.test.last24}</h5>
-                  <small style={{ color: "grey" }}>In 24 Hours</small>
+                  <h5 className="m-1">
+                    {data.totalConfirmedPerMillionPopulation}
+                  </h5>
+                  <small style={{ color: "grey" }}>
+                    Positive <span title="Per Million">(PM)</span>
+                  </small>
                 </td>
                 <td>
-                  <h5 className="m-1">{data.test.total}</h5>
-                  <small style={{ color: "grey" }}>Till Now</small>
+                  <h5 className="m-1">
+                    {data.totalDeathsPerMillionPopulation}
+                  </h5>
+                  <small style={{ color: "grey" }}>
+                    Deaths <span title="Per Million">(PM)</span>
+                  </small>
+                </td>
+              </tr>
+              <tr>
+                <th colSpan={2} align="center">
+                  Critical Cases
+                </th>
+              </tr>
+              <tr>
+                <td colSpan={2} align="center">
+                  <h5 className="m-1 text-danger">{data.totalCritical}</h5>
                 </td>
               </tr>
             </tbody>
           </Table>
           <small className="mb-4" style={{ color: "grey" }}>
-            * Updated On: {new Date(data.updated_on).toUTCString()}
+            * Updated On: {new Date(data.lastUpdated).toUTCString()}
           </small>
 
           <Button
