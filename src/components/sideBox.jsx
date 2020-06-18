@@ -331,7 +331,7 @@ export default class SideBox extends Component {
                         variant={dist.color}
                         title={`Previous Count: ${dist.prev_count}`}
                       >
-                        {dist.sign} {dist.increment}
+                        {dist.sign} {Math.abs(dist.increment)}
                       </Badge>
                     </td>
                   </tr>
