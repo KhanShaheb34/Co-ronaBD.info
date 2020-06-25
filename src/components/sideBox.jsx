@@ -10,6 +10,7 @@ import {
 } from "react-bootstrap";
 import GitHubButton from "react-github-btn";
 import TimeChart from "./timeChart";
+import moment from "moment";
 
 export default class SideBox extends Component {
   constructor(props) {
@@ -245,6 +246,11 @@ export default class SideBox extends Component {
               </tr>
             </tbody>
           </Table>
+          {data.updated_on && (
+            <small style={{ color: "grey" }}>
+              • Updated {moment(data.updated_on).fromNow()}
+            </small>
+          )}
 
           <Button
             className="mt-4 mb-2"
@@ -338,6 +344,11 @@ export default class SideBox extends Component {
                 ))}
             </tbody>
           </Table>
+          {data.district_data_updated_on && (
+            <small style={{ color: "grey" }}>
+              • Updated {moment(data.district_data_updated_on).fromNow()}
+            </small>
+          )}
         </div>
       );
     else
