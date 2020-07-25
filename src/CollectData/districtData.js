@@ -3,7 +3,7 @@ import axios from "axios";
 const url = "https://corona-bd.herokuapp.com/district";
 
 const nameMap = [
-  { from: "Dhaka (District)", to: "Dhaka" },
+  { from: "Dhaka City", to: "Dhaka" },
   { from: "Barishal", to: "Barisal" },
   { from: "Jhalokathi", to: "Jhalokati" },
   { from: "Chattogram", to: "Chittagong" },
