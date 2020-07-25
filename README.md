@@ -1,10 +1,12 @@
 <p align="center">
 <a href="https://www.co-ronabd.info/" align="center">
-<img align="center" width="125" height="165" src="https://github.com/KhanShaheb34/nCov19-InteractiveDashboard-BD/raw/master/images/logo.png">
+<img align="center" width="125" height="165" src="https://github.com/KhanShaheb34/Co-ronaBD.info/raw/master/images/logo.png">
 </a>
 </p>
 
-# <div align="center">nCov-19 Interactive Dashboard for Bangladesh<div>
+<!-- Prev name: nCov19-InteractiveDashboard-BD -->
+
+# <div align="center">Co-ronaBD.info<div>
 
 A interactive dashboard with Bangladesh map showing the number of positive cases in every district.
 
