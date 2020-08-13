@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DistrictData from '../CollectData/districtData';
+import districtData from '../CollectData/districtData';
 import { Map, GeoJSON } from 'react-leaflet';
 import { Spinner, Modal, Button } from 'react-bootstrap';
 import MouseTooltip from 'react-sticky-mouse-tooltip';
@@ -41,14 +41,18 @@ export default class BDMap extends Component {
           ...this.state,
           map: data,
         });
-        return DistrictData();
+        return districtData();
       })
       .then((data) => {
         let max = -1;
         let min = 9999999999;
         data.data.forEach((district) => {
-          if (max < district.count) max = district.count;
-          if (min > district.count) min = district.count;
+          if (max < district.count) {
+            max = district.count;
+          }
+          if (min > district.count) {
+            min = district.count;
+          }
         });
         this.setState({
           ...this.state,
@@ -61,10 +65,13 @@ export default class BDMap extends Component {
   }
   getCityName = (name) => {
     let ret = '';
-    for (let i = 0; i < name.length; i++)
+    for (let i = 0; i < name.length; i++) {
       if (name.charAt(i) === ' ' || name.charAt(i) === '(') {
         break;
-      } else ret = ret + name.charAt(i);
+      } else {
+        ret = ret + name.charAt(i);
+      }
+    }
     return ret;
   };
   componentDidUpdate = (prevProps, prevState) => {
@@ -122,7 +129,7 @@ export default class BDMap extends Component {
       weight: 1,
       opacity: 0.5,
       color: '#2c3e50',
-      fillOpacity: fillOpacity,
+      fillOpacity,
     };
   }
 

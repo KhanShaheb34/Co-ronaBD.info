@@ -340,9 +340,9 @@ export default class SideBox extends Component {
                 ))}
             </tbody>
           </Table>
-          {data.district_data_updated_on && (
+          {data.districtDataUpdatedOn && (
             <small style={{ color: 'grey' }}>
-              • Updated {moment(data.district_data_updated_on).fromNow()}
+              • Updated {moment(data.districtDataUpdatedOn).fromNow()}
             </small>
           )}
         </div>
