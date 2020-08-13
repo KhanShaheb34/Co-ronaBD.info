@@ -1,5 +1,5 @@
-import overallData from "./overallData";
-import districtData from "./districtData";
+import overallData from './overallData';
+import districtData from './districtData';
 
 export default async () => {
   const overall = await overallData();

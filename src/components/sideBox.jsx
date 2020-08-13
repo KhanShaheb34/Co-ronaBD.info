@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AllData from '../CollectData/data';
+import allData from '../CollectData/data';
 import {
   Spinner,
   Table,
@@ -35,7 +35,7 @@ export default class SideBox extends Component {
   }
 
   componentDidMount() {
-    AllData()
+    allData()
       .then((data) => {
         let distData = [];
         data.districts.map((district) => {
@@ -53,8 +53,8 @@ export default class SideBox extends Component {
         });
 
         this.setState({
-          data: data,
-          distData: distData,
+          data,
+          distData,
         });
 
         return fetch('https://pomber.github.io/covid19/timeseries.json');
@@ -65,7 +65,9 @@ export default class SideBox extends Component {
         bdData.splice(0, 46);
 
         let dailyData = bdData.map((val, index, data) => {
-          if (index === 0) return val;
+          if (index === 0) {
+            return val;
+          }
           return {
             date: val.date,
             confirmed: val.confirmed - data[index - 1].confirmed,
@@ -138,7 +140,7 @@ export default class SideBox extends Component {
       showTimeChart,
     } = this.state;
     const sentData = showTimeChart ? timeData : dailyData;
-    if (loaded)
+    if (loaded) {
       return (
         <div>
           <h3 align='center' className='mb-2'>
@@ -345,7 +347,7 @@ export default class SideBox extends Component {
           )}
         </div>
       );
-    else
+    } else {
       return (
         <div
           style={{
@@ -366,5 +368,6 @@ export default class SideBox extends Component {
           </Spinner>
         </div>
       );
+    }
   }
 }

@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-const url = "https://corona-bd.herokuapp.com/stats";
+const url = 'https://corona-bd.herokuapp.com/stats';
 
 export default async () => {
   const res = await axios.get(url);

@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import DistrictData from "../CollectData/districtData";
-import { Map, GeoJSON } from "react-leaflet";
-import { Spinner, Modal, Button } from "react-bootstrap";
-import MouseTooltip from "react-sticky-mouse-tooltip";
+import React, { Component } from 'react';
+import DistrictData from '../CollectData/districtData';
+import { Map, GeoJSON } from 'react-leaflet';
+import { Spinner, Modal, Button } from 'react-bootstrap';
+import MouseTooltip from 'react-sticky-mouse-tooltip';
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "leaflet/dist/leaflet.css";
-import { LatLngBounds, LatLng } from "leaflet";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'leaflet/dist/leaflet.css';
+import { LatLngBounds, LatLng } from 'leaflet';
 
 export default class BDMap extends Component {
   constructor(props) {
@@ -20,11 +20,11 @@ export default class BDMap extends Component {
       data: null,
       max: -1,
       min: 9999999999,
-      selctedName: "",
-      selectedCount: "",
+      selctedName: '',
+      selectedCount: '',
       modalShow: false,
       tooltipShow: false,
-      tooltipName: "",
+      tooltipName: '',
     };
     this.style = this.style.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
@@ -34,7 +34,7 @@ export default class BDMap extends Component {
   }
 
   componentDidMount() {
-    fetch("/bd.min.json")
+    fetch('/bd.min.json')
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -52,18 +52,19 @@ export default class BDMap extends Component {
         });
         this.setState({
           ...this.state,
-          data: data,
-          max: max,
-          min: min,
+          data,
+          max,
+          min,
           loaded: true,
         });
       });
   }
   getCityName = (name) => {
-    let ret = "";
+    let ret = '';
     for (let i = 0; i < name.length; i++)
-      if (name.charAt(i) === " " || name.charAt(i) === "(") break;
-      else ret = ret + name.charAt(i);
+      if (name.charAt(i) === ' ' || name.charAt(i) === '(') {
+        break;
+      } else ret = ret + name.charAt(i);
     return ret;
   };
   componentDidUpdate = (prevProps, prevState) => {
@@ -75,8 +76,8 @@ export default class BDMap extends Component {
     }
   };
 
-  scale(num, in_min, in_max, out_min, out_max) {
-    return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
+  scale(num, inMin, inMax, outMin, outMax) {
+    return ((num - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
   }
 
   getCount(name) {
@@ -91,7 +92,9 @@ export default class BDMap extends Component {
 
   getFillOpacity(name) {
     const count = parseInt(this.getCount(name));
-    if (!count) return 0;
+    if (!count) {
+      return 0;
+    }
 
     return this.scale(
       Math.log10(count),
@@ -107,18 +110,18 @@ export default class BDMap extends Component {
     const cityName = feature.properties.NAME_2;
     if (cityName === this.state.tooltipName) {
       return {
-        fillColor: "#e74c3c",
+        fillColor: '#e74c3c',
         weight: 3,
         opacity: 1,
-        color: "#2c3e50",
-        fillOpacity: fillOpacity,
+        color: '#2c3e50',
+        fillOpacity,
       };
     }
     return {
-      fillColor: "#e74c3c",
+      fillColor: '#e74c3c',
       weight: 1,
       opacity: 0.5,
-      color: "#2c3e50",
+      color: '#2c3e50',
       fillOpacity: fillOpacity,
     };
   }
@@ -149,48 +152,45 @@ export default class BDMap extends Component {
     });
   }
   handleMapMouseOut(feature) {
-    this.setState({ tooltipShow: false, tooltipName: "" });
+    this.setState({ tooltipShow: false, tooltipName: '' });
   }
 
   render() {
     const position = [this.state.lat, this.state.lng];
     const southwest = new LatLng(20.7, 87.9);
     const northeast = new LatLng(26.5, 92.6);
-    if (this.state.loaded)
+    if (this.state.loaded) {
       return (
         <React.Fragment>
           <Map
             style={{
-              width: "100%",
-              height: "100%",
-              backgroundColor: "#ecf0f1",
+              width: '100%',
+              height: '100%',
+              backgroundColor: '#ecf0f1',
             }}
             center={position}
             zoom={this.state.zoom}
             maxZoom={10}
             minZoom={this.state.zoom}
-            maxBounds={new LatLngBounds(southwest, northeast)}
-          >
+            maxBounds={new LatLngBounds(southwest, northeast)}>
             <GeoJSON
               data={this.state.map}
               style={this.style}
               onClick={this.handleMapClick}
               onMouseOver={this.handleMapMouseOver}
-              onMouseOut={this.handleMapMouseOut}
-            ></GeoJSON>
+              onMouseOut={this.handleMapMouseOut}></GeoJSON>
           </Map>
 
           <Modal
             show={this.state.modalShow}
-            size="sm"
-            aria-labelledby="data-modal"
+            size='sm'
+            aria-labelledby='data-modal'
             onHide={this.setModalShowFalse}
-            centered
-          >
-            <Modal.Body style={{ textAlign: "center" }}>
+            centered>
+            <Modal.Body style={{ textAlign: 'center' }}>
               <h5>Positive Cases in {this.state.selectedName}</h5>
               <h4>{this.state.selectedCount}</h4>
-              <Button size="sm" onClick={this.setModalShowFalse}>
+              <Button size='sm' onClick={this.setModalShowFalse}>
                 Close
               </Button>
             </Modal.Body>
@@ -198,15 +198,14 @@ export default class BDMap extends Component {
           <MouseTooltip
             visible={this.state.tooltipShow}
             offsetY={25}
-            className="rounded px-1"
+            className='rounded px-1'
             style={{
               opacity: 1,
-              backgroundColor: "#000",
-              color: "#fff",
+              backgroundColor: '#000',
+              color: '#fff',
               zIndex: 1000,
-            }}
-          >
-            <div align="center" className="p-1">
+            }}>
+            <div align='center' className='p-1'>
               <span>
                 <b>{this.state.tooltipName}</b>
                 <br />
@@ -216,39 +215,37 @@ export default class BDMap extends Component {
           </MouseTooltip>
         </React.Fragment>
       );
-    else
+    } else {
       return (
         <div
           style={{
-            position: "absolute",
-            left: "50%",
-            top: "50%",
-            transform: "translate(-25%, -50%)",
-          }}
-        >
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-25%, -50%)',
+          }}>
           <Spinner
-            animation="border"
-            role="status"
+            animation='border'
+            role='status'
             style={{
-              height: "100px",
-              width: "100px",
+              height: '100px',
+              width: '100px',
             }}
-            variant="danger"
-          ></Spinner>
-          <span className="sr-only">Loading...</span>
+            variant='danger'></Spinner>
+          <span className='sr-only'>Loading...</span>
           <p
-            align="center"
+            align='center'
             style={{
-              transform: "translateX(-25%)",
-              color: "grey",
+              transform: 'translateX(-25%)',
+              color: 'grey',
             }}
-            className="mt-4"
-          >
+            className='mt-4'>
             Please wait while map loads
             <br />
             Thank You
           </p>
         </div>
       );
+    }
   }
 }

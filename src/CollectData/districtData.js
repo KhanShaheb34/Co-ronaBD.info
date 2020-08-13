@@ -1,26 +1,26 @@
-import axios from "axios";
+import axios from 'axios';
 
-const url = "https://corona-bd.herokuapp.com/district";
+const url = 'https://corona-bd.herokuapp.com/district';
 
 const nameMap = [
-  { from: "Dhaka City", to: "Dhaka" },
-  { from: "Barishal", to: "Barisal" },
-  { from: "Jhalokathi", to: "Jhalokati" },
-  { from: "Chattogram", to: "Chittagong" },
-  { from: "Cumilla", to: "Comilla" },
-  { from: "Cox\u2019s bazar", to: "Cox'S Bazar" },
-  { from: "Laksmipur", to: "Lakshmipur" },
-  { from: "Munshigonj", to: "Munshiganj" },
-  { from: "Netrokona", to: "Netrakona" },
-  { from: "Hobiganj", to: "Habiganj" },
-  { from: "Moulovi Bazar", to: "Moulvibazar" },
-  { from: "B. Baria", to: "Brahamanbaria" },
-  { from: "Narshingdi", to: "Narsingdi" },
-  { from: "Panchagar", to: "Panchagarh" },
-  { from: "Chapainawabganj", to: "Nawabganj" },
-  { from: "Khagrachari", to: "Khagrachhari" },
-  { from: "Rangmati", to: "Rangamati" },
-  { from: "Bogura", to: "Bogra" },
+  { from: 'Dhaka City', to: 'Dhaka' },
+  { from: 'Barishal', to: 'Barisal' },
+  { from: 'Jhalokathi', to: 'Jhalokati' },
+  { from: 'Chattogram', to: 'Chittagong' },
+  { from: 'Cumilla', to: 'Comilla' },
+  { from: 'Cox\u2019s bazar', to: "Cox'S Bazar" },
+  { from: 'Laksmipur', to: 'Lakshmipur' },
+  { from: 'Munshigonj', to: 'Munshiganj' },
+  { from: 'Netrokona', to: 'Netrakona' },
+  { from: 'Hobiganj', to: 'Habiganj' },
+  { from: 'Moulovi Bazar', to: 'Moulvibazar' },
+  { from: 'B. Baria', to: 'Brahamanbaria' },
+  { from: 'Narshingdi', to: 'Narsingdi' },
+  { from: 'Panchagar', to: 'Panchagarh' },
+  { from: 'Chapainawabganj', to: 'Nawabganj' },
+  { from: 'Khagrachari', to: 'Khagrachhari' },
+  { from: 'Rangmati', to: 'Rangamati' },
+  { from: 'Bogura', to: 'Bogra' },
 ];
 
 export default async () => {

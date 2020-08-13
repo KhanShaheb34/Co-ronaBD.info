@@ -1,8 +1,8 @@
-## Can I contribute to this project?
+## Can I contribute to this project
 
 Obviously you can.
 
-## How do I contribute?
+## How do I contribute
 
 - If you have knowledge of the technologies this project is built on you can:
   - Fork this repository
