@@ -8,7 +8,10 @@
 
 # <div align="center">Co-ronaBD.info<div>
 
+[![Website](https://img.shields.io/website?down_color=red&down_message=down&up_color=green&up_message=up&url=https%3A%2F%2Fwww.co-ronabd.info%2F)](https://www.co-ronabd.info/)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/fc54a666218b41c1883b7ec9c5da34a3)](https://app.codacy.com/manual/shakirul34/Co-ronaBD.info?utm_source=github.com&utm_medium=referral&utm_content=KhanShaheb34/Co-ronaBD.info&utm_campaign=Badge_Grade_Settings)
+![Code Climate issues](https://img.shields.io/codeclimate/issues/KhanShaheb34/Co-ronaBD.info)
+![GitHub language count](https://img.shields.io/github/languages/count/KhanShaheb34/Co-ronaBD.info)
 
 A interactive dashboard with Bangladesh map showing the number of positive cases in every district.
 
