@@ -8,6 +8,8 @@
 
 # <div align="center">Co-ronaBD.info<div>
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fc54a666218b41c1883b7ec9c5da34a3)](https://app.codacy.com/manual/shakirul34/Co-ronaBD.info?utm_source=github.com&utm_medium=referral&utm_content=KhanShaheb34/Co-ronaBD.info&utm_campaign=Badge_Grade_Settings)
+
 A interactive dashboard with Bangladesh map showing the number of positive cases in every district.
 
 Have a look at:
