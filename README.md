@@ -35,13 +35,10 @@ Have a look at:
 
 ## Screenshots
 
-- Desktop
 
-  ![PC Screenshot](/public/preview.png)
-
-- Mobile
-
-  ![Mobile Screenshot](/images/ssmb.png)
+| Large Display                      | Mobile                                 |
+|------------------------------------|----------------------------------------|
+| ![PC Screenshot](/images/sspc.png) | ![Mobile Screenshot](/images/ssmb.jpg) |
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
