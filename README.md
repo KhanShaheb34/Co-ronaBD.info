@@ -38,7 +38,7 @@ Have a look at:
 
 | Large Display | Mobile |
 |-|-|
-| <img src="/images/sspc.png" height="425" alt="Large Display View (1920x1080)"/> | <img src="/images/ssmb.jpg" height="425" alt="Mobile Display View (1077x3641)"/> |
+| <img src="/images/sspc.png" height="375" alt="Large Display View (1920x1080)"/> | <img src="/images/ssmb.jpg" height="375" alt="Mobile Display View (1077x3641)"/> |
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
