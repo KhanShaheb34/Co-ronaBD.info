@@ -36,9 +36,9 @@ Have a look at:
 ## Screenshots
 
 
-| Large Display                      | Mobile                                 |
-|------------------------------------|----------------------------------------|
-| ![PC Screenshot](/images/sspc.png) | ![Mobile Screenshot](/images/ssmb.jpg) |
+| Large Display | Mobile |
+|-|-|
+| <img src="/images/sspc.png" height="475" alt="Large Display View (1920x1080)"/> | <img src="/images/ssmb.jpg" height="475" alt="Mobile Display View (1077x3641)"/> |
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
