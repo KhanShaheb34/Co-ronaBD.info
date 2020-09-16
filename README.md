@@ -35,9 +35,8 @@ Have a look at:
 
 ## Screenshots
 
-
-| Large Display | Mobile |
-|-|-|
+| Large Display                                                                   | Mobile                                                                           |
+| ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | <img src="/images/sspc.png" height="375" alt="Large Display View (1920x1080)"/> | <img src="/images/ssmb.jpg" height="375" alt="Mobile Display View (1077x3641)"/> |
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -46,7 +45,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `yarn start-dev`
+### `yarn dev` or `npm run dev`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -54,7 +53,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `yarn build`
+### `yarn build` or `npm run build`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import allData from '../CollectData/data';
+import React, { Component } from "react";
+import allData from "../CollectData/data";
 import {
   Spinner,
   Table,
@@ -7,10 +7,11 @@ import {
   Badge,
   InputGroup,
   FormControl,
-} from 'react-bootstrap';
-import GitHubButton from 'react-github-btn';
-import TimeChart from './timeChart';
-import moment from 'moment';
+} from "react-bootstrap";
+import GitHubButton from "react-github-btn";
+import TimeChart from "./timeChart";
+import moment from "moment";
+import AdSense from "react-adsense";
 
 export default class SideBox extends Component {
   constructor(props) {
@@ -19,8 +20,8 @@ export default class SideBox extends Component {
       loaded: false,
       data: null,
       distData: null,
-      query: '',
-      sortedField: 'count',
+      query: "",
+      sortedField: "count",
       sortAscending: -1,
       timeData: null,
       dailyData: null,
@@ -42,8 +43,8 @@ export default class SideBox extends Component {
           const increment = district.count - district.prev_count;
 
           const color =
-            increment > 0 ? 'danger' : increment === 0 ? 'warning' : 'success';
-          const sign = increment > 0 ? '+' : increment === 0 ? '' : '-';
+            increment > 0 ? "danger" : increment === 0 ? "warning" : "success";
+          const sign = increment > 0 ? "+" : increment === 0 ? "" : "-";
           return distData.push({
             ...district,
             increment,
@@ -57,11 +58,11 @@ export default class SideBox extends Component {
           distData,
         });
 
-        return fetch('https://pomber.github.io/covid19/timeseries.json');
+        return fetch("https://pomber.github.io/covid19/timeseries.json");
       })
       .then((response) => response.json())
       .then((res) => {
-        let bdData = res['Bangladesh'];
+        let bdData = res["Bangladesh"];
         bdData.splice(0, 46);
 
         let dailyData = bdData.map((val, index, data) => {
@@ -92,7 +93,7 @@ export default class SideBox extends Component {
   }
 
   searchResults(val) {
-    const regex = RegExp(`${this.state.query}`, 'i');
+    const regex = RegExp(`${this.state.query}`, "i");
     return regex.test(val.name);
   }
 
@@ -109,22 +110,22 @@ export default class SideBox extends Component {
   }
 
   sortByName() {
-    if (this.state.sortedField === 'name') {
+    if (this.state.sortedField === "name") {
       this.setState({
         sortAscending: this.state.sortAscending * -1,
       });
     } else {
-      this.setState({ sortedField: 'name', sortAscending: 1 });
+      this.setState({ sortedField: "name", sortAscending: 1 });
     }
   }
 
   sortByCount() {
-    if (this.state.sortedField === 'count') {
+    if (this.state.sortedField === "count") {
       this.setState({
         sortAscending: this.state.sortAscending * -1,
       });
     } else {
-      this.setState({ sortedField: 'count', sortAscending: -1 });
+      this.setState({ sortedField: "count", sortAscending: -1 });
     }
   }
 
@@ -143,174 +144,186 @@ export default class SideBox extends Component {
     if (loaded) {
       return (
         <div>
-          <h3 align='center' className='mb-2'>
+          <h3 align="center" className="mb-2">
             Covid-19
             <br />
             Interactive Dashboard for Bangladesh
           </h3>
 
-          <div className='info mb-2' align='center'>
+          <div className="info mb-2" align="center">
             <div>
               <Button
-                size='sm'
-                as='a'
-                href='/about'
-                variant='outline-dark'
-                className='p-0 px-1 mb-1'>
-                <small className='p-0'>
+                size="sm"
+                as="a"
+                href="/about"
+                variant="outline-dark"
+                className="p-0 px-1 mb-1"
+              >
+                <small className="p-0">
                   <b>About</b>
                 </small>
               </Button>
             </div>
-            <div className='m-1 d-inline-block'>
+            <div className="m-1 d-inline-block">
               <GitHubButton
-                href='https://github.com/KhanShaheb34/Co-ronaBD.info'
-                data-icon='octicon-star'
-                data-size='small'
-                aria-label='Star KhanShaheb34/Co-ronaBD.info on GitHub'>
+                href="https://github.com/KhanShaheb34/Co-ronaBD.info"
+                data-icon="octicon-star"
+                data-size="small"
+                aria-label="Star KhanShaheb34/Co-ronaBD.info on GitHub"
+              >
                 Star
               </GitHubButton>
             </div>
-            <div className='m-1 d-inline-block'>
+            <div className="m-1 d-inline-block">
               <GitHubButton
-                href='https://github.com/KhanShaheb34'
-                data-size='small'
-                aria-label='Follow @KhanShaheb34 on GitHub'>
+                href="https://github.com/KhanShaheb34"
+                data-size="small"
+                aria-label="Follow @KhanShaheb34 on GitHub"
+              >
                 Follow @KhanShaheb34
               </GitHubButton>
             </div>
           </div>
 
-          <Table striped bordered hover size='sm' className='mb-0'>
-            <tbody align='center'>
+          <Table striped bordered hover size="sm" className="mb-0">
+            <tbody align="center">
               <tr>
-                <th colSpan={2} align='center'>
+                <th colSpan={2} align="center">
                   Positive Cases
                 </th>
               </tr>
               <tr>
                 <td>
-                  <h5 className='m-1'>{data.positive.last24}</h5>
-                  <small style={{ color: 'grey' }}>In 24 Hours</small>
+                  <h5 className="m-1">{data.positive.last24}</h5>
+                  <small style={{ color: "grey" }}>In 24 Hours</small>
                 </td>
                 <td>
-                  <h5 className='m-1'>{data.positive.total}</h5>
-                  <small style={{ color: 'grey' }}>Till Now</small>
+                  <h5 className="m-1">{data.positive.total}</h5>
+                  <small style={{ color: "grey" }}>Till Now</small>
                 </td>
               </tr>
               <tr>
-                <th colSpan={2} align='center'>
+                <th colSpan={2} align="center">
                   Recovered
                 </th>
               </tr>
               <tr>
                 <td>
-                  <h5 className='m-1'>{data.recovered.last24}</h5>
-                  <small style={{ color: 'grey' }}>In 24 Hours</small>
+                  <h5 className="m-1">{data.recovered.last24}</h5>
+                  <small style={{ color: "grey" }}>In 24 Hours</small>
                 </td>
                 <td>
-                  <h5 className='m-1'>{data.recovered.total}</h5>
-                  <small style={{ color: 'grey' }}>Till Now</small>
+                  <h5 className="m-1">{data.recovered.total}</h5>
+                  <small style={{ color: "grey" }}>Till Now</small>
                 </td>
               </tr>
               <tr>
-                <th colSpan={2} align='center'>
+                <th colSpan={2} align="center">
                   Deaths
                 </th>
               </tr>
               <tr>
                 <td>
-                  <h5 className='m-1'>{data.death.last24}</h5>
-                  <small style={{ color: 'grey' }}>In 24 Hours</small>
+                  <h5 className="m-1">{data.death.last24}</h5>
+                  <small style={{ color: "grey" }}>In 24 Hours</small>
                 </td>
                 <td>
-                  <h5 className='m-1'>{data.death.total}</h5>
-                  <small style={{ color: 'grey' }}>Till Now</small>
+                  <h5 className="m-1">{data.death.total}</h5>
+                  <small style={{ color: "grey" }}>Till Now</small>
                 </td>
               </tr>
               <tr>
-                <th colSpan={2} align='center'>
+                <th colSpan={2} align="center">
                   Tests
                 </th>
               </tr>
               <tr>
                 <td>
-                  <h5 className='m-1'>{data.test.last24}</h5>
-                  <small style={{ color: 'grey' }}>In 24 Hours</small>
+                  <h5 className="m-1">{data.test.last24}</h5>
+                  <small style={{ color: "grey" }}>In 24 Hours</small>
                 </td>
                 <td>
-                  <h5 className='m-1'>{data.test.total}</h5>
-                  <small style={{ color: 'grey' }}>Till Now</small>
+                  <h5 className="m-1">{data.test.total}</h5>
+                  <small style={{ color: "grey" }}>Till Now</small>
                 </td>
               </tr>
             </tbody>
           </Table>
           {data.updated_on && (
-            <small style={{ color: 'grey' }}>
+            <small style={{ color: "grey" }}>
               • Updated {moment(data.updated_on).fromNow()}
             </small>
           )}
 
+          <AdSense.Google
+            client="ca-pub-1319935021353805"
+            slot="2650934712"
+            style={{ display: "block" }}
+            format="auto"
+            responsive="true"
+          />
+
           <Button
-            className='mt-4 mb-2'
-            size='sm'
-            variant='outline-secondary'
+            className="mt-4 mb-2"
+            size="sm"
+            variant="outline-secondary"
             block
             onClick={() => {
               this.setState({ showTimeChart: !this.state.showTimeChart });
-            }}>
-            {showTimeChart ? 'Show Daily Cases' : 'Show Cumulative Data'}
+            }}
+          >
+            {showTimeChart ? "Show Daily Cases" : "Show Cumulative Data"}
           </Button>
           <TimeChart data={sentData} />
 
-          <Table striped bordered hover className='mt-4 mb-0'>
+          <Table striped bordered hover className="mt-4 mb-0">
             <tbody>
-              <tr align='center'>
+              <tr align="center">
                 <th colSpan={2}>District Wise Data</th>
               </tr>
               <tr>
                 <th colSpan={2}>
-                  <InputGroup className='m-0 p-0'>
+                  <InputGroup className="m-0 p-0">
                     <InputGroup.Prepend>
-                      <InputGroup.Text id='search-bar'>
-                        <span role='img' aria-label='Search'>
+                      <InputGroup.Text id="search-bar">
+                        <span role="img" aria-label="Search">
                           🔍
                         </span>
                       </InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
-                      as='input'
+                      as="input"
                       onChange={this.handleSearchBarChange}
-                      placeholder='Search'
-                      aria-label='Search'
-                      aria-describedby='search-bar'
+                      placeholder="Search"
+                      aria-label="Search"
+                      aria-describedby="search-bar"
                     />
                   </InputGroup>
                 </th>
               </tr>
               <tr>
-                <th onClick={this.sortByName} style={{ cursor: 'pointer' }}>
+                <th onClick={this.sortByName} style={{ cursor: "pointer" }}>
                   District
-                  {sortedField === 'name' && sortAscending === -1 && (
-                    <span style={{ float: 'right' }}>⇈</span>
+                  {sortedField === "name" && sortAscending === -1 && (
+                    <span style={{ float: "right" }}>⇈</span>
                   )}
-                  {sortedField === 'name' && sortAscending === 1 && (
-                    <span style={{ float: 'right' }}>⇊</span>
+                  {sortedField === "name" && sortAscending === 1 && (
+                    <span style={{ float: "right" }}>⇊</span>
                   )}
-                  {sortedField === 'count' && (
-                    <span style={{ float: 'right', color: 'grey' }}>⇵</span>
+                  {sortedField === "count" && (
+                    <span style={{ float: "right", color: "grey" }}>⇵</span>
                   )}
                 </th>
-                <th onClick={this.sortByCount} style={{ cursor: 'pointer' }}>
+                <th onClick={this.sortByCount} style={{ cursor: "pointer" }}>
                   Positive
-                  {sortedField === 'count' && sortAscending === -1 && (
-                    <span style={{ float: 'right' }}>⇈</span>
+                  {sortedField === "count" && sortAscending === -1 && (
+                    <span style={{ float: "right" }}>⇈</span>
                   )}
-                  {sortedField === 'count' && sortAscending === 1 && (
-                    <span style={{ float: 'right' }}>⇊</span>
+                  {sortedField === "count" && sortAscending === 1 && (
+                    <span style={{ float: "right" }}>⇊</span>
                   )}
-                  {sortedField === 'name' && (
-                    <span style={{ float: 'right', color: 'grey' }}>⇵</span>
+                  {sortedField === "name" && (
+                    <span style={{ float: "right", color: "grey" }}>⇵</span>
                   )}
                 </th>
               </tr>
@@ -321,18 +334,20 @@ export default class SideBox extends Component {
                   <tr
                     key={dist.name}
                     onMouseOver={() => this.selectOnMap(dist.name)}
-                    onMouseOut={() => this.selectOnMap('')}
-                    style={{ cursor: 'pointer' }}>
+                    onMouseOut={() => this.selectOnMap("")}
+                    style={{ cursor: "pointer" }}
+                  >
                     <td>{dist.name}</td>
                     <td>
-                      {dist.count}{' '}
+                      {dist.count}{" "}
                       <Badge
                         style={{
-                          float: 'right',
-                          cursor: 'pointer',
+                          float: "right",
+                          cursor: "pointer",
                         }}
                         variant={dist.color}
-                        title={`Previous Count: ${dist.prev_count}`}>
+                        title={`Previous Count: ${dist.prev_count}`}
+                      >
                         {dist.sign} {Math.abs(dist.increment)}
                       </Badge>
                     </td>
@@ -341,7 +356,7 @@ export default class SideBox extends Component {
             </tbody>
           </Table>
           {data.districtDataUpdatedOn && (
-            <small style={{ color: 'grey' }}>
+            <small style={{ color: "grey" }}>
               • Updated {moment(data.districtDataUpdatedOn).fromNow()}
             </small>
           )}
@@ -351,20 +366,22 @@ export default class SideBox extends Component {
       return (
         <div
           style={{
-            position: 'absolute',
-            left: '50%',
-            top: '50%',
-            transform: 'translate(-50%, -50%)',
-          }}>
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
           <Spinner
-            animation='border'
-            role='status'
+            animation="border"
+            role="status"
             style={{
-              height: '50px',
-              width: '50px',
+              height: "50px",
+              width: "50px",
             }}
-            variant='danger'>
-            <span className='sr-only'>Loading...</span>
+            variant="danger"
+          >
+            <span className="sr-only">Loading...</span>
           </Spinner>
         </div>
       );
