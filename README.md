@@ -1,3 +1,6 @@
+> ### The [API](https://github.com/ahmedsadman/covid19-bd) used to build this site is currently down now.
+> ### The domain name ([co-ronabd.info](https://www.co-ronabd.info/)) have been expired.
+
 <p align="center">
 <a href="https://www.co-ronabd.info/" align="center">
 <img align="center" width="125" height="165" src="https://github.com/KhanShaheb34/Co-ronaBD.info/raw/master/images/logo.png">
@@ -38,27 +41,3 @@ Have a look at:
 | Large Display                                                                   | Mobile                                                                           |
 | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | <img src="/images/sspc.png" height="375" alt="Large Display View (1920x1080)"/> | <img src="/images/ssmb.jpg" height="375" alt="Mobile Display View (1077x3641)"/> |
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn dev` or `npm run dev`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn build` or `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
